@@ -1,0 +1,13 @@
+canvas {
+	margin-top: 10px;
+    padding-left: 0;
+    padding-right: 0;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    touch-action: none;
+}
+
+.background-color {
+	background-color: #6495ED;
+}
