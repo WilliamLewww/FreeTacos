@@ -7,6 +7,9 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.onGround = false;
 	this.canJump = false;
 
+	this.previousX = 0;
+	this.previousY = 0;
+
 	this.moveSpeed = 2.5;
 	this.jumpHeight = 5;
 
@@ -46,8 +49,16 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			}
 		}
 
+		this.previousX = this.rectangle.x;
+		this.previousY = this.rectangle.y;
+
 		this.rectangle.x += this.velocityX;
 		this.rectangle.y += this.velocityY;
+
+		if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
+			sendPosition();
+		}
+
 		this.onGround = false;
 	}
 

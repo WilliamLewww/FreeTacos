@@ -6,21 +6,21 @@ var io = require('socket.io')(server);
 
 server.listen(80);
 
-app.get('/', function (req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/index.html');
 });
 
-io.on('connection', function (socket) {
+io.on('connection', (socket) => {
 	socket.emit('initial_connection', { client_list: clientList });
 
-	socket.on('verified_connection', function (data) {
+	socket.on('verified_connection', (data) => {
 		console.log('New Client with ID: ' + socket.id);
 
 		clientList.push(new Client(socket.id, data.position));
 		socket.broadcast.emit('new_client', { client: clientList[clientList.length - 1] });
 	});
 
-	socket.on('sent_position', function (data) {
+	socket.on('sent_position', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id) {
 				clientList[x].position = data.position;

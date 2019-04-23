@@ -21,6 +21,10 @@ function Joiner() {
 	}
 
 	this.draw = () => {
+		clientList.forEach(client => {
+			client.rectangle.draw(client.position[0], client.position[1]);
+		});
+
 		this.player.draw();
 
 		this.platformList.forEach(platform => {

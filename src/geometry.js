@@ -19,11 +19,11 @@ function Rectangle(x, y, width, height, color = [255,0,0,255]) {
 
 	this.positionBuffer = gl.createBuffer();
 
-	this.draw = () => {
+	this.draw = (x = this.x, y = this.y) => {
 		gl.useProgram(this.program);
 		gl.enableVertexAttribArray(this.positionAttributeLocation);
 		gl.bindBuffer(gl.ARRAY_BUFFER, this.positionBuffer);
-		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.getPositionArray()), gl.STATIC_DRAW);
+		gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(this.getPositionArray(x, y)), gl.STATIC_DRAW);
 		gl.vertexAttribPointer(this.positionAttributeLocation, 2, gl.FLOAT, false, 0, 0);
 		gl.uniform2f(this.resolutionLocation, gl.canvas.width, gl.canvas.height);
 		gl.uniform1f(this.scaleLocation, scaleMin);
@@ -31,14 +31,14 @@ function Rectangle(x, y, width, height, color = [255,0,0,255]) {
 		gl.drawArrays(gl.TRIANGLES, 0, 6);
 	}
 
-	this.getPositionArray = () => {
+	this.getPositionArray = (x, y) => {
 		return [
-			this.x, this.y,
-			this.x + this.width, this.y,
-			this.x, this.y + this.height,
-			this.x, this.y + this.height,
-			this.x + this.width, this.y,
-			this.x + this.width, this.y + this.height,
+			x, y,
+			x + this.width, y,
+			x, y + this.height,
+			x, y + this.height,
+			x + this.width, y,
+			x + this.width, y + this.height,
 		];
 	}
 }
