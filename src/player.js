@@ -75,6 +75,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (this.isSmall == false) {
 			this.rectangle.height = 25.0 / 2.0;
 			this.rectangle.y += 25.0 / 2.0;
+			this.moveSpeed = 1.8;
+			this.jumpHeight = 3.0;
 			this.isSmall = true;
 		}
 	}
@@ -83,6 +85,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (this.isSmall == true) {
 			this.rectangle.height = 25.0;
 			this.rectangle.y -= 25.0 / 2.0;
+			this.moveSpeed = 2.5;
+			this.jumpHeight = 5;
 			this.isSmall = false;
 		}
 	}
