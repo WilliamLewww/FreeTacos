@@ -10,6 +10,12 @@ var mainReq;
 
 createListeners();
 function initialize() {
+	if (loadingTextExists) {
+		document.getElementById("loading-text").remove();
+		document.getElementById("loading-text2").remove();
+		loadingTextExists = false;
+	}
+
 	var canvas = document.getElementById("glCanvas");
 	gl = canvas.getContext("experimental-webgl");
 	resize();
@@ -79,16 +85,10 @@ function createProgram(vertexSource, fragmentSource) {
 }
 
 var inputList = [];
-var isFocused = false;
+var isFocused = true;
 var loadingTextExists = true;
 function createListeners() {
 	document.addEventListener('focus', event => { 
-		if (loadingTextExists) {
-			document.getElementById("loading-text").remove();
-			document.getElementById("loading-text2").remove();
-			loadingTextExists = false;
-		}
-		
 		isFocused = true; 
 	});
 	document.addEventListener('blur', event => { isFocused = false; });
