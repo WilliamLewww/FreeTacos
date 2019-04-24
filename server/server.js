@@ -3,11 +3,11 @@ var clientList = [];
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
+server.listen(process.env.PORT);
 
-server.listen(80);
-
-app.get('/', (req, res) => {
-  res.sendFile(__dirname + '/index.html');
+app.get('/*', function(req, res) { 
+	res.header("Access-Control-Allow-Origin", "*");
+	res.header("Access-Control-Allow-Headers", "Content-Type");
 });
 
 io.on('connection', (socket) => {

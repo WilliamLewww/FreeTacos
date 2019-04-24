@@ -4,6 +4,58 @@
 		"selected_items":
 		[
 			[
+				"previ",
+				"previousY"
+			],
+			[
+				"clin",
+				"clientList\t(server.js)"
+			],
+			[
+				"clie",
+				"client"
+			],
+			[
+				"sock",
+				"socket_list"
+			],
+			[
+				"initia",
+				"initial_connection"
+			],
+			[
+				"sok",
+				"socket_id"
+			],
+			[
+				"pla",
+				"platform"
+			],
+			[
+				"plat",
+				"platformList"
+			],
+			[
+				"SCREE",
+				"SCREEN_HEIGHT"
+			],
+			[
+				"velo",
+				"velocityY"
+			],
+			[
+				"SCR",
+				"SCREEN_HEIGHT\t(engine.js)"
+			],
+			[
+				"vel",
+				"velocityY"
+			],
+			[
+				"scal",
+				"scaleWindow"
+			],
+			[
 				"handle",
 				"handleMinimap"
 			],
@@ -22,14 +74,6 @@
 			[
 				"touch",
 				"touch_position"
-			],
-			[
-				"scal",
-				"scaleMin"
-			],
-			[
-				"SCREE",
-				"SCREEN_HEIGHT\t(engine.js)"
 			],
 			[
 				"scale",
@@ -252,10 +296,6 @@
 				"indexOf"
 			],
 			[
-				"SCR",
-				"SCREEN_HEIGHT"
-			],
-			[
 				"Sc",
 				"SCREEN_HEIGHT\t(engine.js)"
 			],
@@ -474,51 +514,110 @@
 			[
 				"wind",
 				"windowPosition"
-			],
-			[
-				"windo",
-				"windowPosition"
-			],
-			[
-				"glP",
-				"glPopMatrix"
-			],
-			[
-				"thi",
-				"thirdPerson"
-			],
-			[
-				"thirdP",
-				"thirdPersonTranslated"
-			],
-			[
-				"sce",
-				"getScreenHeight"
-			],
-			[
-				"get",
-				"getScreenWidth"
-			],
-			[
-				"third",
-				"thirdPersonTransformed"
-			],
-			[
-				"wi",
-				"windowPosition"
-			],
-			[
-				"Vect",
-				"vector3"
-			],
-			[
-				"w",
-				"windowHeight"
 			]
 		]
 	},
 	"buffers":
 	[
+		{
+			"file": "index.html",
+			"settings":
+			{
+				"buffer_size": 2407,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server.js",
+			"settings":
+			{
+				"buffer_size": 1409,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/server.js",
+			"settings":
+			{
+				"buffer_size": 1409,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "server/package.json",
+			"settings":
+			{
+				"buffer_size": 402,
+				"encoding": "UTF-8",
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"file": "src/engine.js",
+			"settings":
+			{
+				"buffer_size": 2109,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/geometry.js",
+			"settings":
+			{
+				"buffer_size": 1451,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/joiner.js",
+			"settings":
+			{
+				"buffer_size": 1774,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/shader_source.js",
+			"settings":
+			{
+				"buffer_size": 868,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/player.js",
+			"settings":
+			{
+				"buffer_size": 3050,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/client.js",
+			"settings":
+			{
+				"buffer_size": 1201,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/s_entities.js",
+			"settings":
+			{
+				"buffer_size": 608,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		}
 	],
 	"build_system": "",
 	"build_system_choices":
@@ -952,6 +1051,14 @@
 		"selected_items":
 		[
 			[
+				"ar",
+				"Arithmetic"
+			],
+			[
+				"a",
+				"Arithmetic"
+			],
+			[
 				"install",
 				"Package Control: Install Package"
 			],
@@ -1012,16 +1119,8 @@
 				"UI: Select Color Scheme"
 			],
 			[
-				"a",
-				"Arithmetic"
-			],
-			[
 				"sort",
 				"Sort Lines"
-			],
-			[
-				"ar",
-				"Arithmetic"
 			],
 			[
 				"ari",
@@ -1317,6 +1416,15 @@
 	],
 	"file_history":
 	[
+		"/C/Users/William/Desktop/asdf.txt",
+		"/C/Projects/FreeTacos/server/Procfile",
+		"/C/Projects/FreeTacos/src/client.js",
+		"/C/Projects/FreeTacos/server/.gitignore",
+		"/C/Projects/FreeTacos/.gitignore",
+		"/C/Projects/SpotStop/.gitignore",
+		"/C/Projects/FreeTacos/server.js",
+		"/C/Projects/FreeTacos/style.css",
+		"/C/Projects/SpotStop/dist/depricated/leaderboard/js/leaderboard/p_entities.js",
 		"/C/Projects/Mood-Web/src/joiner.js",
 		"/C/Projects/Mood-Web/src/shader_source.js",
 		"/C/Projects/Mood-Web/src/third_person.js",
@@ -1435,20 +1543,11 @@
 		"/C/Projects/Visual-Computer/engine.cpp",
 		"/C/Projects/Visual-Computer/engine.h",
 		"/C/Projects/Visual-Computer/main.cpp",
-		"/C/Projects/Visual-Computer/src/register_example.cpp",
-		"/C/Projects/Visual-Computer/src/register_example.h",
-		"/C/Projects/Visual-Computer/src/basic_computer.h",
-		"/C/Projects/Visual-Computer/src/basic_computer.cpp",
-		"/C/Projects/Visual-Computer/src/core/configuration.cpp",
-		"/C/Projects/Visual-Computer/config.txt",
-		"/C/Projects/Nautilus/src/rectangle_index.h",
-		"/C/Projects/Nautilus/src/core/input.h",
-		"/C/Projects/Nautilus/src/camera.h",
-		"/C/Projects/Nautilus/src/core/drawing.cpp"
+		"/C/Projects/Visual-Computer/src/register_example.cpp"
 	],
 	"find":
 	{
-		"height": 40.0
+		"height": 59.0
 	},
 	"find_in_files":
 	{
@@ -1463,6 +1562,30 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"1",
+			"30",
+			"50",
+			"x",
+			"64080",
+			"sent_position",
+			"position",
+			"this.y",
+			"this.x",
+			"clientList",
+			"function",
+			"data",
+			"socketList",
+			"data",
+			"keyList",
+			"sprite",
+			"moveSpeed",
+			"5",
+			"keyList",
+			"x",
+			"size",
+			"scaleLocation",
+			"joiner",
+			"input_list",
 			"gl.canvas.width",
 			"refresh",
 			"canToggleDrawMethod",
@@ -1566,31 +1689,7 @@
 			"div",
 			"WallNode",
 			"wallBuffer",
-			"new Wall",
-			"id",
-			"position",
-			"index",
-			"new Wall",
-			"new",
-			"WallNode",
-			"Wall",
-			"wall",
-			"wallBuffer",
-			"wallCount",
-			"drawWall",
-			"index",
-			"drawWall",
-			"cameraPosition",
-			"denormalizeColor",
-			"color",
-			"wallBuffer",
-			"wallDrawObject",
-			"'",
-			"int",
-			"positionList",
-			"parseInt",
-			"<<",
-			"printString"
+			"new Wall"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1608,14 +1707,358 @@
 	"groups":
 	[
 		{
+			"selected": 1,
 			"sheets":
 			[
+				{
+					"buffer": 0,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2407,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1551,
+								1551
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1409,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1409,
+								1409
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "server/server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1409,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								240,
+								240
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "server/package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 402,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								399,
+								399
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 9,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/engine.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1987,
+								1987
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/geometry.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1451,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1360,
+								1360
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": "src/joiner.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1774,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								563,
+								563
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "src/shader_source.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 868,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								317,
+								317
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 11,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "src/player.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3050,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2206,
+								2206
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 11.0,
+						"translation.y": 603.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1201,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								809,
+								809
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/engine.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2109,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								11,
+								11
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 78.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 10,
+					"type": "text"
+				},
+				{
+					"buffer": 10,
+					"file": "src/s_entities.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 608,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								395,
+								395
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				}
 			]
 		}
 	],
 	"incremental_find":
 	{
-		"height": 29.0
+		"height": 46.0
 	},
 	"input":
 	{
@@ -1660,7 +2103,7 @@
 	"project": "project.sublime-project",
 	"replace":
 	{
-		"height": 54.0
+		"height": 88.0
 	},
 	"save_all_on_build": true,
 	"select_file":
@@ -1669,6 +2112,18 @@
 		"last_filter": "",
 		"selected_items":
 		[
+			[
+				"cli",
+				"src\\client.js"
+			],
+			[
+				"server",
+				"server\\server.js"
+			],
+			[
+				"engi",
+				"src\\engine.js"
+			],
 			[
 				"pro",
 				"project.sublime-project"
@@ -1752,10 +2207,6 @@
 			[
 				"da",
 				"src\\data_parse.js"
-			],
-			[
-				"engi",
-				"src\\engine.js"
 			],
 			[
 				"shader",
