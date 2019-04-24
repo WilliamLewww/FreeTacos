@@ -7,6 +7,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.onGround = false;
 	this.canJump = false;
 
+	this.isSmall = false;
+
 	this.previousX = 0;
 	this.previousY = 0;
 
@@ -25,6 +27,13 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		this.velocityX = 0;
 		if (inputList.indexOf(37) != -1 && inputList.indexOf(39) == -1 && this.left() > 0) { this.velocityX = -this.moveSpeed; }
 		if (inputList.indexOf(37) == -1 && inputList.indexOf(39) != -1 && this.right() < SCREEN_WIDTH) { this.velocityX = this.moveSpeed; }
+
+		if (inputList.indexOf(40) != -1) {
+			this.changeToSmall();
+		}
+		else {
+			this.changeToBig();
+		}
 
 		if (this.bottom() < SCREEN_HEIGHT) {
 			if (this.velocityY < 0 && inputList.indexOf(32) == -1) {
@@ -60,6 +69,22 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		}
 
 		this.onGround = false;
+	}
+
+	this.changeToSmall = () => {
+		if (this.isSmall == false) {
+			this.rectangle.height = 25.0 / 2.0;
+			this.rectangle.y += 25.0 / 2.0;
+			this.isSmall = true;
+		}
+	}
+
+	this.changeToBig = () => {
+		if (this.isSmall == true) {
+			this.rectangle.height = 25.0;
+			this.rectangle.y -= 25.0 / 2.0;
+			this.isSmall = false;
+		}
 	}
 
 	this.draw = () => {
