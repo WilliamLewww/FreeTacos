@@ -6,6 +6,7 @@ var gl;
 var programList = [];
 
 var joiner;
+var mainReq;
 
 function initialize() {
 	var canvas = document.getElementById("glCanvas");
@@ -28,7 +29,7 @@ function initialize() {
 function mainLoop() {
   update();
   draw();
-  requestAnimationFrame(mainLoop);
+  mainReq = requestAnimationFrame(mainLoop);
 }
 
 function update() {

@@ -6,6 +6,7 @@ var socket = io.connect('https://freetacos.herokuapp.com');
 
 socket.on('initial_connection', (data) => {
 	TILE_MAP = data.tile_map;
+	cancelAnimationFrame(mainReq);
 	initialize();
 
 	console.log('Connected with ID: ' + socket.id);
