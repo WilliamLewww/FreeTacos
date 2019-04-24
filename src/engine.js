@@ -84,8 +84,8 @@ function createProgram(vertexSource, fragmentSource) {
   return program;
 }
 
-var inputList = [];
 var isFocused = true;
+var inputList = [];
 var loadingTextExists = true;
 function createListeners() {
 	document.addEventListener('focus', event => { 
