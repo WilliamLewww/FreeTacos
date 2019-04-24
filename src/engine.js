@@ -27,9 +27,11 @@ function initialize() {
 }
 
 function mainLoop() {
-  update();
-  draw();
-  mainReq = requestAnimationFrame(mainLoop);
+	if (isFocused) {
+		update();
+		draw();
+	}
+	mainReq = requestAnimationFrame(mainLoop);
 }
 
 function update() {
@@ -77,13 +79,26 @@ function createProgram(vertexSource, fragmentSource) {
 }
 
 var inputList = [];
+var isFocused = false;
+var loadingTextExists = true;
 function createListeners() {
-  document.addEventListener('keydown', event => {
-    if ([32, 37, 38, 39, 40].indexOf(event.keyCode) != -1) { event.preventDefault(); }
-    if (inputList.indexOf(event.keyCode) == -1) { inputList.push(event.keyCode); }
-  });
+	document.addEventListener('focus', event => { 
+		if (loadingTextExists) {
+			document.getElementById("loading-text").remove();
+			document.getElementById("loading-text2").remove();
+			loadingTextExists = false;
+		}
+		
+		isFocused = true; 
+	});
+	document.addEventListener('blur', event => { isFocused = false; });
 
-  document.addEventListener('keyup', event => {
-    inputList.splice(inputList.indexOf(event.keyCode), 1);
-  });
+	document.addEventListener('keydown', event => {
+		if ([32, 37, 38, 39, 40].indexOf(event.keyCode) != -1) { event.preventDefault(); }
+		if (inputList.indexOf(event.keyCode) == -1) { inputList.push(event.keyCode); }
+	});
+
+	document.addEventListener('keyup', event => {
+		inputList.splice(inputList.indexOf(event.keyCode), 1);
+	});
 }

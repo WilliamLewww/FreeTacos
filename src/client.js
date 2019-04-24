@@ -14,13 +14,13 @@ socket.on('initial_connection', (data) => {
 
 	clientList = data.client_list;
 	clientList.forEach(client => {
-		client.rectangle = new Rectangle(undefined, undefined, 25, 25);
+		client.rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
 	});
 });
 
 socket.on('new_client', (data) => {
 	clientList.push(data.client);
-	clientList[clientList.length - 1].rectangle = new Rectangle(undefined, undefined, 25, 25);
+	clientList[clientList.length - 1].rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
 });
 
 socket.on('disconnected_client', (data) => {
