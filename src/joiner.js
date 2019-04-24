@@ -10,7 +10,10 @@ function Joiner() {
 		for (var y = 0; y < TILE_MAP.length; y++) {
 			for (var x = 0; x < TILE_MAP[y].length; x++) {
 				if (TILE_MAP[y][x] == 1) {
-					this.platformList.push(new Platform([x * 40,y * 40], 40, 40, generateRandomRGB()));
+					this.platformList.push(new Platform(1, [x * 40,y * 40], 40, 40, generateRandomRGB()));
+				}
+				if (TILE_MAP[y][x] == 2) {
+					this.platformList.push(new Platform(2, [x * 40,(y * 40) + 20], 40, 20, [200,255,0,255]));
 				}
 			}
 		}

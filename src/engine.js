@@ -8,11 +8,11 @@ var programList = [];
 var joiner;
 var mainReq;
 
+createListeners();
 function initialize() {
 	var canvas = document.getElementById("glCanvas");
 	gl = canvas.getContext("experimental-webgl");
 	resize();
-	createListeners();
 
 	programList.push(createProgram(VERTEX_SHADER_1, FRAGMENT_SHADER_1));
 

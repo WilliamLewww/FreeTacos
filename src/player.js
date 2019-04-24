@@ -87,10 +87,15 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			if (Math.abs(overlapY) < Math.abs(overlapX)) {
 				if (overlapY < 0.0) {
 					if (this.velocityY > 0.0) {
-						if (inputList.indexOf(32) == -1) { this.canJump = true; }
-						this.onGround = true;
-						this.rectangle.y += overlapY;
-						this.velocityY = 0;
+						if (platform.id == 1) {
+							if (inputList.indexOf(32) == -1) { this.canJump = true; }
+							this.onGround = true;
+							this.rectangle.y += overlapY;
+							this.velocityY = 0;
+						}
+						if (platform.id == 2) {
+							this.velocityY = -this.jumpHeight * 1.8;
+						}
 					}
 				}
 				else {

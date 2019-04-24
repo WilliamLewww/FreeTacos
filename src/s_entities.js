@@ -1,4 +1,5 @@
-function Platform(position, width, height, color = [255,255,255,255]) {
+function Platform(id, position, width, height, color = [255,255,255,255]) {
+	this.id = id;
 	this.rectangle = new Rectangle(position[0], position[1], width, height, color);
 
 	this.top = () => { return this.rectangle.y; }
