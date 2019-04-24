@@ -1,6 +1,7 @@
 var clientList = [];
 
-var socket = io.connect('http://localhost');
+//var socket = io.connect('http://localhost');
+var socket = io.connect('https://freetacos.herokuapp.com');
 
 socket.on('initial_connection', (data) => {
 	console.log('Connected with ID: ' + socket.id);
