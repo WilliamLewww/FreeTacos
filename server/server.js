@@ -1,14 +1,14 @@
+const URL = "mongodb://username:HrLgtjuOPMVqCENl@freetacos-shard-00-00-wovzf.mongodb.net:27017,freetacos-shard-00-01-wovzf.mongodb.net:27017,freetacos-shard-00-02-wovzf.mongodb.net:27017/test?ssl=true&replicaSet=FreeTacos-shard-0&authSource=admin&retryWrites=true";
 var clientList = [];
 
 var MongoClient = require('mongodb').MongoClient;
-var url = "mongodb://username:HrLgtjuOPMVqCENl@freetacos-shard-00-00-wovzf.mongodb.net:27017,freetacos-shard-00-01-wovzf.mongodb.net:27017,freetacos-shard-00-02-wovzf.mongodb.net:27017/test?ssl=true&replicaSet=FreeTacos-shard-0&authSource=admin&retryWrites=true";
-
+var bcrypt = require('bcryptjs');
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);
 server.listen(process.env.PORT);
 
-app.get('/*', function(req, res) { 
+app.get('/*', (req, res) => { 
 	res.header("Access-Control-Allow-Origin", "*");
 	res.header("Access-Control-Allow-Headers", "Content-Type");
 });
@@ -23,17 +23,6 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('new_client', { client: clientList[clientList.length - 1] });
 	});
 
-	socket.on('sent_position', (data) => {
-		for (var x = 0; x < clientList.length; x++) {
-			if (clientList[x].id == socket.id) {
-				clientList[x].position = data.position;
-				x = clientList.length;
-			}
-		}
-
-		socket.broadcast.emit('updated_position', { client_id: socket.id, position: data.position });
-	});
-
 	socket.on('disconnect', (reason) => {
 		console.log("Client Disconnected with ID: " + socket.id);
 
@@ -46,11 +35,92 @@ io.on('connection', (socket) => {
 
 		socket.broadcast.emit('disconnected_client', { client_id: socket.id });
 	});
+
+	socket.on('sent_position', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id == socket.id) {
+				clientList[x].position = data.position;
+				x = clientList.length;
+			}
+		}
+
+		socket.broadcast.emit('updated_position', { client_id: socket.id, position: data.position });
+	});
+
+	socket.on('attempt_login', (data) => {
+		attemptLogin(socket, data.username, data.password);
+	});
+
+	socket.on('attempt_register', (data) => {
+		attemptRegister(socket, data.username, data.password);
+	});
 });
+
+function attemptLogin(socket, username, password) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		dbo.collection("accounts").findOne({username: username}, (err, result) => {
+			if (err) throw err;
+			if (result) {
+				if (bcrypt.compareSync(password, result.password)) { login(socket); }
+				else { socket.emit('alert_message', { message: "Incorrect Password" }); }
+			}
+			else {
+				socket.emit('alert_message', { message: "Incorrect Username" });
+			}
+		});
+	});
+}
+
+function login(socket) {
+	var sessionKey = bcrypt.hashSync(String(Date.now()), 8);
+	socket.emit('alert_message', { message: "Successful Login!" });
+	socket.emit('session_key', { key: sessionKey });
+
+	for (var x = 0; x < clientList.length; x++) {
+		if (clientList[x].id == socket.id) {
+			clientList[x].sessionKey = sessionKey;
+		}
+	}
+}
+
+function attemptRegister(socket, username, password) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		dbo.collection("accounts").findOne({username: username}, (err, result) => {
+			if (err) throw err;
+			if (!result) { register(socket, username, password); }
+			else {
+				socket.emit('alert_message', { message: "Username Already Exists" });
+			}
+			db.close();
+		});
+	});
+}
+
+function register(socket, username, password) {
+	var salt = bcrypt.genSaltSync(10);
+	var hash = bcrypt.hashSync(password, salt);
+
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		dbo.collection("accounts").insertOne({username: username, password: hash, type: 0}, (err, result) => {
+			if (err) throw err;
+			console.log("Created New User: " + username);
+			socket.emit('alert_message', { message: "Successfully Created an Account!" });
+			db.close();
+		});
+	});
+}
 
 function Client(ID, position) {
 	this.id = ID;
 	this.position = [position[0], position[1]];
+
+	this.sessionKey = "";
 }
 
 const TILE_MAP = [

@@ -20,3 +20,20 @@ canvas {
 	margin-top: 10px;
 	background-color: #c9dcff ;
 }
+
+.instruction-box {
+	border-style: ridge;
+	border-width: 8px;
+	margin-top: -5px;
+	background-color: #c9dcff ;
+}
+
+.top-instruction {
+	margin-top: 10px;
+	margin-bottom: 8px;
+}
+
+.instruction-text {
+	padding-left: 10px;
+	margin-top: 5px;
+}
