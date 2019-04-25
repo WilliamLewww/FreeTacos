@@ -11,6 +11,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 
 	this.previousX = 0;
 	this.previousY = 0;
+	this.positionTimer = 0.0;
+	this.positionInterval = 25;
 
 	this.moveSpeed = 2.5;
 	this.jumpHeight = 5;
@@ -23,8 +25,9 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.centerX = () => { return this.rectangle.x + (this.rectangle.width / 2); }
 	this.centerY = () => { return this.rectangle.y + (this.rectangle.height / 2); }
 
-	this.update = () => {
+	this.update = (elapsedTimeMS) => {
 		this.velocityX = 0;
+
 		if (inputList.indexOf(37) != -1 && inputList.indexOf(39) == -1 && this.left() > 0) { this.velocityX = -this.moveSpeed; }
 		if (inputList.indexOf(37) == -1 && inputList.indexOf(39) != -1 && this.right() < SCREEN_WIDTH) { this.velocityX = this.moveSpeed; }
 
@@ -58,14 +61,20 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			}
 		}
 
-		this.previousX = this.rectangle.x;
-		this.previousY = this.rectangle.y;
-
 		this.rectangle.x += this.velocityX;
 		this.rectangle.y += this.velocityY;
 
-		if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
-			sendPosition();
+		if (this.positionTimer >= this.positionInterval) {
+			if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
+				this.previousX = this.rectangle.x;
+				this.previousY = this.rectangle.y;
+				this.positionTimer = 0.0;
+
+				sendPosition();
+			}
+		}
+		else {
+			this.positionTimer += elapsedTimeMS;
 		}
 
 		this.onGround = false;

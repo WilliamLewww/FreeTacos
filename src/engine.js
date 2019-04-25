@@ -8,6 +8,10 @@ var programList = [];
 var joiner;
 var mainReq;
 
+var frameStart = Date.now();
+var frameEnd = Date.now();
+var deltaTime = 0;
+
 createListeners();
 function initialize() {
 	if (loadingTextExists) {
@@ -33,15 +37,16 @@ function initialize() {
 }
 
 function mainLoop() {
-	if (isFocused) {
-		update();
-		draw();
-	}
+	frameStart = Date.now();
+	update(deltaTime);
+	draw();
+	frameEnd = Date.now();
+	deltaTime = frameEnd - frameStart;
 	mainReq = requestAnimationFrame(mainLoop);
 }
 
-function update() {
-	joiner.update();
+function update(elapsedTimeMS) {
+	joiner.update(elapsedTimeMS);
 }
 
 function draw() {

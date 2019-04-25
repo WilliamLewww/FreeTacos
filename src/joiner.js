@@ -19,8 +19,8 @@ function Joiner() {
 		}
 	}
 
-	this.update = () => {
-		this.player.update();
+	this.update = (elapsedTimeMS) => {
+		this.player.update(elapsedTimeMS);
 
 		this.platformList.forEach(platform => {
 			if (this.player.checkCollision(platform)) {
