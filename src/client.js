@@ -57,6 +57,22 @@ function createClientListeners() {
 
 	socket.on('session_key', (data) => {
 		sessionKey = data.key;
+		document.getElementById('username-input').remove();
+		document.getElementById('password-input').remove();
+		document.getElementById('login-button').remove();
+		document.getElementById('register-button').remove();
+
+		var accountDiv = document.getElementById('account-div');
+		var usernameText = document.createElement('p');
+		usernameText.innerHTML = 'Current Username: ' + data.username;
+		var logoutButton = document.createElement('BUTTON');
+		logoutButton.innerHTML = 'Logout';
+		logoutButton.addEventListener('click', (event) => {
+			window.location.reload();
+		});
+		accountDiv.innerHTML = "";
+		accountDiv.appendChild(usernameText);
+		accountDiv.appendChild(logoutButton);
 	});
 
 	socket.on('new_client', (data) => {

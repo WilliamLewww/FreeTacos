@@ -63,7 +63,7 @@ function attemptLogin(socket, username, password) {
 		dbo.collection("accounts").findOne({username: username}, (err, result) => {
 			if (err) throw err;
 			if (result) {
-				if (bcrypt.compareSync(password, result.password)) { login(socket); }
+				if (bcrypt.compareSync(password, result.password)) { login(socket, username); }
 				else { socket.emit('alert_message', { message: "Incorrect Password" }); }
 			}
 			else {
@@ -73,10 +73,10 @@ function attemptLogin(socket, username, password) {
 	});
 }
 
-function login(socket) {
+function login(socket, username) {
 	var sessionKey = bcrypt.hashSync(String(Date.now()), 8);
 	socket.emit('alert_message', { message: "Successful Login!" });
-	socket.emit('session_key', { key: sessionKey });
+	socket.emit('session_key', { key: sessionKey, username: username });
 
 	for (var x = 0; x < clientList.length; x++) {
 		if (clientList[x].id == socket.id) {
