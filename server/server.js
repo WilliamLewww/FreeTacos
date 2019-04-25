@@ -1,5 +1,8 @@
 var clientList = [];
 
+var MongoClient = require('mongodb').MongoClient;
+var url = "mongodb://username:HrLgtjuOPMVqCENl@freetacos-shard-00-00-wovzf.mongodb.net:27017,freetacos-shard-00-01-wovzf.mongodb.net:27017,freetacos-shard-00-02-wovzf.mongodb.net:27017/test?ssl=true&replicaSet=FreeTacos-shard-0&authSource=admin&retryWrites=true";
+
 var app = require('express')();
 var server = require('http').Server(app);
 var io = require('socket.io')(server);

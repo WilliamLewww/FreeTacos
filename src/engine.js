@@ -12,7 +12,12 @@ var frameStart = Date.now();
 var frameEnd = Date.now();
 var deltaTime = 0;
 
-createListeners();
+function initializeTextures() {
+	socket = io.connect('https://freetacos.herokuapp.com');
+	createClientListeners();
+	createListeners();
+}
+
 function initialize() {
 	if (loadingTextExists) {
 		document.getElementById("loading-text").remove();
