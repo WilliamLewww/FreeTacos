@@ -132,6 +132,15 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		return false;
 	}
 
+	this.checkCollisionBottom = (platform) => {
+		if (this.top() <= platform.bottom() && this.top() >= platform.bottom() - 5 && 
+			this.left() <= platform.right() - 3 && this.right() >= platform.left() + 3) {
+			return true;
+		}
+
+		return false;
+	}
+
 	this.handleCollision = (platform) => {
 		var overlapX = 0.0, overlapY = 0.0;
 		if (this.centerX() > platform.centerX()) { overlapX = platform.right() - this.left(); }
@@ -156,8 +165,10 @@ function Player(position, width, height, color = [255,0,0,255]) {
 				}
 				else {
 					if (this.velocityY < 0) {
-						this.rectangle.y += overlapY;
-						this.velocityY = 0;
+						if (this.checkCollisionBottom(platform)) {
+							this.rectangle.y += overlapY;
+							this.velocityY = 0;
+						}
 					}
 				}
 			}
