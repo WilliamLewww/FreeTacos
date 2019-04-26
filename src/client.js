@@ -118,11 +118,11 @@ function createClientListeners() {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id.toString() == data.client_id) {
 				if (data.size == "small") {
-					clientList[x].height = 25.0 / 2.0;
+					clientList[x].rectangle.height = 25.0 / 2.0;
 					x = clientList.length;
 				}
 				if (data.size == "medium") {
-					clientList[x].height = 25.0;
+					clientList[x].rectangle.height = 25.0;
 					x = clientList.length;
 				}
 			}
