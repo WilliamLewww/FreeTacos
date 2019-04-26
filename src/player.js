@@ -26,6 +26,10 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.centerX = () => { return this.rectangle.x + (this.rectangle.width / 2); }
 	this.centerY = () => { return this.rectangle.y + (this.rectangle.height / 2); }
 
+	this.setColor = (color) => {
+		this.rectangle.color = color;
+	}
+
 	this.update = (elapsedTimeMS) => {
 		this.velocityX = 0;
 

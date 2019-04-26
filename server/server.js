@@ -65,20 +65,33 @@ io.on('connection', (socket) => {
 });
 
 function attemptLogin(socket, username, password) {
-	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
-		if (err) throw err;
-		var dbo = db.db("network_game");
-		dbo.collection("accounts").findOne({username: username}, (err, result) => {
-			if (err) throw err;
-			if (result) {
-				if (bcrypt.compareSync(password, result.password)) { login(socket, username); }
-				else { socket.emit('alert_message', { message: "Incorrect Password" }); }
-			}
-			else {
-				socket.emit('alert_message', { message: "Incorrect Username" });
-			}
-		});
+	var connectionAlreadyExists = false;
+
+	clientList.forEach(client => {
+		if (client.username == username) {
+			connectionAlreadyExists = true;
+		}
 	});
+
+	if (!connectionAlreadyExists) {
+		MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+			if (err) throw err;
+			var dbo = db.db("network_game");
+			dbo.collection("accounts").findOne({username: username}, (err, result) => {
+				if (err) throw err;
+				if (result) {
+					if (bcrypt.compareSync(password, result.password)) { login(socket, username); }
+					else { socket.emit('alert_message', { message: "Incorrect Password" }); }
+				}
+				else {
+					socket.emit('alert_message', { message: "Incorrect Username" });
+				}
+			});
+		});
+	}
+	else {
+		socket.emit('alert_message', { message: "The Account is in Use" });
+	}
 }
 
 function login(socket, username) {
@@ -87,8 +100,11 @@ function login(socket, username) {
 	socket.emit('alert_message', { message: "Successful Login!" });
 	socket.emit('session_key', { key: sessionKey, username: username });
 
+	socket.broadcast.emit('change_color', { client_id: socket.id, color: "green" });
+
 	for (var x = 0; x < clientList.length; x++) {
 		if (clientList[x].id == socket.id) {
+			clientList[x].username = username;
 			clientList[x].sessionKey = sessionKey;
 		}
 	}
@@ -129,6 +145,7 @@ function Client(ID, position) {
 	this.id = ID;
 	this.position = [position[0], position[1]];
 
+	this.username = "";
 	this.sessionKey = "no-key";
 }
 

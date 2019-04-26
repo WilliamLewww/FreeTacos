@@ -77,6 +77,7 @@ function createClientListeners() {
 		accountDiv.innerHTML = "";
 		accountDiv.appendChild(usernameText);
 		accountDiv.appendChild(logoutButton);
+		joiner.player.setColor([0,255,0,255]);
 	});
 
 	socket.on('new_client', (data) => {
@@ -89,6 +90,17 @@ function createClientListeners() {
 			if (clientList[x].id.toString() == data.client_id) {
 				clientList[x].position = data.position;
 				x = clientList.length;
+			}
+		}
+	});
+
+	socket.on('change_color', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id.toString() == data.client_id) {
+				if (data.color == "green") {
+					clientList[x].rectangle.color = [0,255,0,255];
+					x = clientList.length;
+				}
 			}
 		}
 	});
