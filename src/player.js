@@ -92,6 +92,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			this.moveSpeed = 1.8;
 			this.jumpHeight = 3.0;
 			this.isSmall = true;
+			sizeChange("small");
 		}
 	}
 
@@ -102,6 +103,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			this.moveSpeed = 2.5;
 			this.jumpHeight = 5;
 			this.isSmall = false;
+			sizeChange("medium");
 		}
 	}
 

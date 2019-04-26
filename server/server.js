@@ -55,6 +55,10 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('updated_position', { client_id: socket.id, position: data.position });
 	});
 
+	socket.on('size_change', (data) => {
+		socket.broadcast.emit('size_change', { client_id: socket.id, size: data.size });
+	});
+
 	socket.on('collision_gate', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {

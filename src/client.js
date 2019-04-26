@@ -31,6 +31,10 @@ function collisionWithGate() {
 	socket.emit('collision_gate', { key: sessionKey });
 }
 
+function sizeChange(size) {
+	socket.emit('size_change', { size: size } );
+}
+
 function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
@@ -42,7 +46,12 @@ function createClientListeners() {
 
 		clientList = data.client_list;
 		clientList.forEach(client => {
-			client.rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
+			if (client.username.length > 0) {
+				client.rectangle = new Rectangle(undefined, undefined, 25, 25, [0,255,0,100]);
+			}
+			else {
+				client.rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
+			}
 		});
 	});
 
@@ -99,6 +108,21 @@ function createClientListeners() {
 			if (clientList[x].id.toString() == data.client_id) {
 				if (data.color == "green") {
 					clientList[x].rectangle.color = [0,255,0,255];
+					x = clientList.length;
+				}
+			}
+		}
+	});
+
+	socket.on('size_change', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id.toString() == data.client_id) {
+				if (data.size == "small") {
+					clientList[x].height = 25.0 / 2.0;
+					x = clientList.length;
+				}
+				if (data.size == "medium") {
+					clientList[x].height = 25.0;
 					x = clientList.length;
 				}
 			}
