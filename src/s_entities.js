@@ -30,14 +30,10 @@ function Gateway(position, width, height) {
 
 	this.incrementState = () => {
 		if (this.currentState == 2) {
-			this.currentState = 0;
-			this.rectangle.x = SCREEN_WIDTH;
-			this.rectangle.y = SCREEN_HEIGHT;
+			this.currentState = -1;
 		}
-		else {
-			this.currentState += 1;
-			this.rectangle.updateIndex(this.currentState);
-		} 
+		else { this.currentState += 1; }
+		this.rectangle.updateIndex(this.currentState);
 	}
 
 	this.draw = () => {

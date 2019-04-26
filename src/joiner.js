@@ -18,6 +18,15 @@ function Joiner() {
 				if (TILE_MAP[y][x] == 3) {
 					this.platformList.push(new Gateway([x * 40, y * 40], 80, 40));
 				}
+				if (TILE_MAP[y][x] == 4) {
+					this.platformList.push(new Platform(1, [x * 40,(y * 40) + 20], 40, 20, [200,200,200,255]));
+				}
+				if (TILE_MAP[y][x] == 5) {
+					this.platformList.push(new Platform(1, [x * 40,y * 40], 40, 20, [200,200,200,255]));
+				}
+				if (TILE_MAP[y][x] == 6) {
+					this.platformList.push(new Platform(1, [x * 40,y * 40], 40, 40, [200,200,200,255]));
+				}
 			}
 		}
 	}
@@ -25,15 +34,22 @@ function Joiner() {
 	this.update = (elapsedTimeMS) => {
 		this.player.update(elapsedTimeMS);
 
-		this.platformList.forEach(platform => {
-			if (this.player.checkCollision(platform)) {
-				this.player.handleCollision(platform);
-
-				if (platform.id == 3) {
-					collisionWithGate();
+		for (var x = 0; x < this.platformList.length; x++) {
+			if (this.player.checkCollision(this.platformList[x])) {
+				if (this.platformList[x].id == 3) {
+					if (this.platformList[x].currentState == -1) {
+						if (this.player.centerY() < this.platformList[x].centerY()) { 
+							this.platformList[x].incrementState(); 
+						}
+					}
+					else {
+						if (this.player.centerY() > this.platformList[x].centerY()) { collisionWithGate(); }
+						this.player.handleCollision(this.platformList[x]);
+					}
 				}
+				else { this.player.handleCollision(this.platformList[x]); }
 			}
-		});
+		}
 	}
 
 	this.draw = () => {

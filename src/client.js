@@ -1,6 +1,6 @@
 var TILE_MAP;
-var clientList = [];
 
+var clientList = [];
 var sessionKey = "";
 
 function login(username, password) {

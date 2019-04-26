@@ -36,11 +36,12 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (inputList.indexOf(37) != -1 && inputList.indexOf(39) == -1 && this.left() > 0) { this.velocityX = -this.moveSpeed; }
 		if (inputList.indexOf(37) == -1 && inputList.indexOf(39) != -1 && this.right() < SCREEN_WIDTH) { this.velocityX = this.moveSpeed; }
 
-		if (inputList.indexOf(40) != -1) {
-			this.changeToSmall();
-		}
-		else {
-			this.changeToBig();
+		if (inputList.indexOf(40) != -1) { this.changeToSmall(); }
+		else { this.changeToBig(); }
+
+		if (this.top() <= 0) {
+			this.velocityY = 0;
+			this.rectangle.y = 0;
 		}
 
 		if (this.bottom() < SCREEN_HEIGHT) {
@@ -97,7 +98,17 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	}
 
 	this.changeToBig = () => {
-		if (this.isSmall == true) {
+		var canChangeToBig = true;
+		if (this.top() - 25 < 0) { canChangeToBig = false; }
+		joiner.platformList.forEach(platform => {
+			if (this.right() > platform.left() && this.left() < platform.right() &&
+				this.bottom() >= platform.centerY() && this.top() - 25 < platform.bottom()) {
+
+				canChangeToBig = false;
+			}
+		});
+
+		if (canChangeToBig && this.isSmall == true) {
 			this.rectangle.height = 25.0;
 			this.rectangle.y -= 25.0 / 2.0;
 			this.moveSpeed = 2.5;
@@ -132,7 +143,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			if (Math.abs(overlapY) < Math.abs(overlapX)) {
 				if (overlapY < 0.0) {
 					if (this.velocityY > 0.0) {
-						if (platform.id == 1) {
+						if (platform.id == 1 || platform.id == 3) {
 							if (inputList.indexOf(32) == -1) { this.canJump = true; }
 							this.onGround = true;
 							this.rectangle.y += overlapY;
