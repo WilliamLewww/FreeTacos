@@ -36,6 +36,14 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('disconnected_client', { client_id: socket.id });
 	});
 
+	socket.on('attempt_login', (data) => {
+		attemptLogin(socket, data.username, data.password);
+	});
+
+	socket.on('attempt_register', (data) => {
+		attemptRegister(socket, data.username, data.password);
+	});
+
 	socket.on('sent_position', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id) {
@@ -47,12 +55,12 @@ io.on('connection', (socket) => {
 		socket.broadcast.emit('updated_position', { client_id: socket.id, position: data.position });
 	});
 
-	socket.on('attempt_login', (data) => {
-		attemptLogin(socket, data.username, data.password);
-	});
-
-	socket.on('attempt_register', (data) => {
-		attemptRegister(socket, data.username, data.password);
+	socket.on('collision_gate', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
+				socket.emit('confirm_collision', { type: "gate" });
+			}
+		}
 	});
 });
 
@@ -74,6 +82,7 @@ function attemptLogin(socket, username, password) {
 }
 
 function login(socket, username) {
+	console.log("User Logged in: " + username);
 	var sessionKey = bcrypt.hashSync(String(Date.now()), 8);
 	socket.emit('alert_message', { message: "Successful Login!" });
 	socket.emit('session_key', { key: sessionKey, username: username });
@@ -120,7 +129,7 @@ function Client(ID, position) {
 	this.id = ID;
 	this.position = [position[0], position[1]];
 
-	this.sessionKey = "";
+	this.sessionKey = "no-key";
 }
 
 const TILE_MAP = [
@@ -133,7 +142,7 @@ const TILE_MAP = [
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
 	[0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,0,1,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,0,1,1],
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],

@@ -12,7 +12,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.previousX = 0;
 	this.previousY = 0;
 	this.positionTimer = 0.0;
-	this.positionInterval = 25;
+	this.positionInterval = 0;
+	//this.positionInterval = 25;
 
 	this.moveSpeed = 2.5;
 	this.jumpHeight = 5;

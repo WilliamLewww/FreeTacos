@@ -27,6 +27,10 @@ function register(username, password) {
 	document.getElementById('password-input').value = "";
 }
 
+function collisionWithGate() {
+	socket.emit('collision_gate', { key: sessionKey });
+}
+
 function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
@@ -85,6 +89,16 @@ function createClientListeners() {
 			if (clientList[x].id.toString() == data.client_id) {
 				clientList[x].position = data.position;
 				x = clientList.length;
+			}
+		}
+	});
+
+	socket.on('confirm_collision', (data) => {
+		if (data.type == "gate") {
+			for (var x = 0; x < joiner.platformList.length; x++) {
+				if (joiner.platformList[x].id == 3) {
+					joiner.platformList[x].incrementState();
+				}
 			}
 		}
 	});
