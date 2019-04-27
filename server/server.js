@@ -87,13 +87,18 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	//data.position[0] data.position[1]
 	socket.on('collision_marker', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
-				currentMarker.gameState = 1;
-				clientList[x].gameState = 1;
-				socket.emit('confirm_collision', { type: "marker" });
-				socket.broadcast.emit('marker_collected', { client_id: socket.id });
+				if (data.position[0] + 40 >= currentMarker.position[0] && data.position[0] <= currentMarker.position[0] + 40 &&
+					data.position[1] + 40 >= currentMarker.position[1] && data.position[1] <= currentMarker.position[1] + 40) {
+					
+					clientList[x].gameState = 1;
+					resetMarkerPosition();
+					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
+					socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
+				}
 			}
 		}
 	});
@@ -189,11 +194,21 @@ function Client(ID, position) {
 function Marker(position) {
 	this.position = [position[0], position[1]];
 
-	this.gameState = 0;
+	this.setPosition = (position) => {
+		this.position = [position[0], position[1]];
+	}
 }
 
+function resetMarkerPosition() {
+	currentMarker.setPosition(getRandomMarkerLocation());
+}
+
+var previousMarkerIndex = -1;
 function getRandomMarkerLocation() {
 	var index = Math.floor(Math.random() * MARKER_POSITION_COUNT);
+	while (index == previousMarkerIndex) { index = Math.floor(Math.random() * MARKER_POSITION_COUNT); }
+	previousMarkerIndex = index;
+
 	var count = 0;
 
 	for (var y = 0; y < TILE_MAP.length; y++) {
@@ -207,5 +222,5 @@ function getRandomMarkerLocation() {
 		}
 	}
 
-	return [0, 0];
+	return [0,0];
 }

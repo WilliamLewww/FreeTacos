@@ -1,6 +1,5 @@
 var TILE_MAP;
 var currentMarkerPosition;
-var currentMarkerGameState;
 
 var clientList = [];
 var sessionKey = "";
@@ -45,7 +44,6 @@ function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
 		currentMarkerPosition = data.current_marker.position;
-		currentMarkerGameState = data.current_marker.gameState;
 		
 		cancelAnimationFrame(mainReq);
 		initialize();
@@ -149,7 +147,7 @@ function createClientListeners() {
 		if (data.type == "marker") {
 			joiner.player.setColor([0,0,255,255]);
 			joiner.player.gameState = 1;
-			joiner.marker.gameState = 1;
+			joiner.marker.setPosition(data.current_marker.position);
 		}
 	});
 
@@ -157,9 +155,10 @@ function createClientListeners() {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id.toString() == data.client_id) {
 				clientList[x].rectangle.color = [0,0,255,255];
-				joiner.marker.gameState = 1;
 			}
 		}
+
+		joiner.marker.setPosition(data.current_marker.position);
 	});
 }
 

@@ -7,7 +7,7 @@ function generateRandomRGB() {
 
 function Joiner() {
 	this.initialize = () => {
-		this.marker = new Marker(currentMarkerPosition, currentMarkerGameState);
+		this.marker = new Marker(currentMarkerPosition);
 		this.player = new Player([50, SCREEN_HEIGHT - 75], PLAYER_WIDTH, PLAYER_HEIGHT);
 		this.platformList = [];
 
@@ -38,10 +38,8 @@ function Joiner() {
 	this.update = (elapsedTimeMS) => {
 		this.player.update(elapsedTimeMS);
 
-		if (this.marker.gameState == 0) {
-			if (this.player.checkCollision(this.marker)) {
-				collisionMarker();
-			}
+		if (this.player.checkCollision(this.marker)) {
+			collisionMarker();
 		}
 
 		for (var x = 0; x < this.platformList.length; x++) {
@@ -63,7 +61,7 @@ function Joiner() {
 	}
 
 	this.draw = () => {
-		if (this.marker.gameState == 0) { this.marker.draw(); }
+		this.marker.draw();
 		clientList.forEach(client => { client.rectangle.draw(client.position[0], client.position[1]); });
 		this.player.draw();
 		this.platformList.forEach(platform => { platform.draw(); });

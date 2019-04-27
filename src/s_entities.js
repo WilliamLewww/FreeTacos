@@ -41,9 +41,13 @@ function Gateway(position, width, height) {
 	}
 }
 
-function Marker(position, gameState) {
+function Marker(position) {
 	this.rectangle = new RectangleTextured(position[0], position[1], 40, 40, 3);
-	this.gameState = gameState;
+
+	this.setPosition = (position) => {
+		this.rectangle.x = position[0];
+		this.rectangle.y = position[1];
+	}
 
 	this.top = () => { return this.rectangle.y; }
 	this.bottom = () => { return this.rectangle.y + this.rectangle.height; }
