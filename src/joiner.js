@@ -1,10 +1,14 @@
+const PLAYER_WIDTH = 27;
+const PLAYER_HEIGHT = 27;
+
 function generateRandomRGB() {
 	return [Math.floor(Math.random() * 256),Math.floor(Math.random() * 256),Math.floor(Math.random() * 256), 255];
 }
 
 function Joiner() {
 	this.initialize = () => {
-		this.player = new Player([50, SCREEN_HEIGHT - 75], 25, 25);
+		this.marker = new Marker(currentMarkerPosition, currentMarkerGameState);
+		this.player = new Player([50, SCREEN_HEIGHT - 75], PLAYER_WIDTH, PLAYER_HEIGHT);
 		this.platformList = [];
 
 		for (var y = 0; y < TILE_MAP.length; y++) {
@@ -34,6 +38,12 @@ function Joiner() {
 	this.update = (elapsedTimeMS) => {
 		this.player.update(elapsedTimeMS);
 
+		if (this.marker.gameState == 0) {
+			if (this.player.checkCollision(this.marker)) {
+				collisionMarker();
+			}
+		}
+
 		for (var x = 0; x < this.platformList.length; x++) {
 			if (this.player.checkCollision(this.platformList[x])) {
 				if (this.platformList[x].id == 3) {
@@ -43,7 +53,7 @@ function Joiner() {
 						}
 					}
 					else {
-						if (this.player.centerY() > this.platformList[x].centerY()) { collisionWithGate(); }
+						if (this.player.centerY() > this.platformList[x].centerY()) { collisionGate(); }
 						this.player.handleCollision(this.platformList[x]);
 					}
 				}
@@ -53,14 +63,9 @@ function Joiner() {
 	}
 
 	this.draw = () => {
-		clientList.forEach(client => {
-			client.rectangle.draw(client.position[0], client.position[1]);
-		});
-
+		if (this.marker.gameState == 0) { this.marker.draw(); }
+		clientList.forEach(client => { client.rectangle.draw(client.position[0], client.position[1]); });
 		this.player.draw();
-
-		this.platformList.forEach(platform => {
-			platform.draw();
-		});
+		this.platformList.forEach(platform => { platform.draw(); });
 	}
 }

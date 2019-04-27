@@ -40,3 +40,20 @@ function Gateway(position, width, height) {
 		this.rectangle.draw();
 	}
 }
+
+function Marker(position, gameState) {
+	this.rectangle = new RectangleTextured(position[0], position[1], 40, 40, 3);
+	this.gameState = gameState;
+
+	this.top = () => { return this.rectangle.y; }
+	this.bottom = () => { return this.rectangle.y + this.rectangle.height; }
+	this.left = () => { return this.rectangle.x; }
+	this.right = () => { return this.rectangle.x + this.rectangle.width; }
+
+	this.centerX = () => { return this.rectangle.x + (this.rectangle.width / 2); }
+	this.centerY = () => { return this.rectangle.y + (this.rectangle.height / 2); }
+
+	this.draw = () => {
+		this.rectangle.draw();
+	}
+}

@@ -7,6 +7,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.onGround = false;
 	this.canJump = false;
 
+	this.gameState = 0;
+
 	this.isSmall = false;
 
 	this.previousX = 0;
@@ -88,8 +90,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 
 	this.changeToSmall = () => {
 		if (this.isSmall == false) {
-			this.rectangle.height = 25.0 / 2.0;
-			this.rectangle.y += 25.0 / 2.0;
+			this.rectangle.height = PLAYER_HEIGHT / 2;
+			this.rectangle.y += PLAYER_HEIGHT / 2;
 			this.moveSpeed = 1.8;
 			this.jumpHeight = 3.0;
 			this.isSmall = true;
@@ -102,15 +104,15 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (this.top() - 25 < 0) { canChangeToBig = false; }
 		joiner.platformList.forEach(platform => {
 			if (this.right() > platform.left() && this.left() < platform.right() &&
-				this.bottom() >= platform.centerY() && this.top() - 25 < platform.bottom()) {
+				this.bottom() >= platform.centerY() && this.top() - (PLAYER_HEIGHT / 2) < platform.bottom()) {
 
 				canChangeToBig = false;
 			}
 		});
 
 		if (canChangeToBig && this.isSmall == true) {
-			this.rectangle.height = 25.0;
-			this.rectangle.y -= 25.0 / 2.0;
+			this.rectangle.height = PLAYER_HEIGHT;
+			this.rectangle.y -= PLAYER_HEIGHT / 2;
 			this.moveSpeed = 2.5;
 			this.jumpHeight = 5;
 			this.isSmall = false;

@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"PLAY",
+				"PLAYER_WIDTH\t(joiner.js)"
+			],
+			[
+				"plat",
+				"platform"
+			],
+			[
+				"center",
+				"centerX"
+			],
+			[
+				"pla",
+				"platformList"
+			],
+			[
+				"plaf",
+				"platformList\t(joiner.js)"
+			],
+			[
 				"curre",
 				"currentState\t(s_entities.js)"
 			],
@@ -90,14 +110,6 @@
 			[
 				"sok",
 				"socket_id"
-			],
-			[
-				"pla",
-				"platform"
-			],
-			[
-				"plat",
-				"platformList"
 			],
 			[
 				"SCREE",
@@ -502,109 +514,16 @@
 			[
 				"di",
 				"displayWindow"
-			],
-			[
-				"getS",
-				"getScreenHeight"
-			],
-			[
-				"getScre",
-				"getScreenHeight"
-			],
-			[
-				"scree",
-				"getScreenHeight"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 3339,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "style.css",
-			"settings":
-			{
-				"buffer_size": 596,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "server/server.js",
 			"settings":
 			{
-				"buffer_size": 5607,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/engine.js",
-			"settings":
-			{
-				"buffer_size": 3470,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "server/package.json",
-			"settings":
-			{
-				"buffer_size": 344,
-				"encoding": "UTF-8",
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": "src/joiner.js",
-			"settings":
-			{
-				"buffer_size": 2029,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/player.js",
-			"settings":
-			{
-				"buffer_size": 4181,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/s_entities.js",
-			"settings":
-			{
-				"buffer_size": 1449,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/geometry.js",
-			"settings":
-			{
-				"buffer_size": 4090,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "src/shader_source.js",
-			"settings":
-			{
-				"buffer_size": 2001,
+				"buffer_size": 6203,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -613,8 +532,16 @@
 			"file": "src/client.js",
 			"settings":
 			{
-				"buffer_size": 4099,
+				"buffer_size": 4181,
 				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/joiner.js",
+			"settings":
+			{
+				"buffer_size": 2102,
 				"line_ending": "Windows"
 			}
 		}
@@ -1416,18 +1343,24 @@
 	],
 	"file_history":
 	[
-		"/C/Users/William/Desktop/test.py",
-		"/C/Projects/FreeTacos/src/player.js",
+		"/C/Projects/FreeTacos/src/joiner.js",
 		"/C/Projects/FreeTacos/src/engine.js",
-		"/C/Projects/FreeTacos/src/shader_source.js",
+		"/C/Projects/FreeTacos/server/server.js",
+		"/C/Projects/FreeTacos/style.css",
 		"/C/Projects/FreeTacos/src/client.js",
+		"/C/Projects/FreeTacos/src/shader_source.js",
+		"/C/Projects/FreeTacos/src/geometry.js",
+		"/C/Projects/FreeTacos/index.html",
+		"/C/Projects/FreeTacos/server/package.json",
+		"/C/Projects/FreeTacos/src/player.js",
+		"/C/Projects/FreeTacos/src/s_entities.js",
+		"/C/Users/William/Desktop/test.py",
 		"/C/Projects/FreeTacos/server.js",
 		"/C/Users/William/Desktop/asdf.txt",
 		"/C/Projects/FreeTacos/server/Procfile",
 		"/C/Projects/FreeTacos/server/.gitignore",
 		"/C/Projects/FreeTacos/.gitignore",
 		"/C/Projects/SpotStop/.gitignore",
-		"/C/Projects/FreeTacos/style.css",
 		"/C/Projects/SpotStop/dist/depricated/leaderboard/js/leaderboard/p_entities.js",
 		"/C/Projects/Mood-Web/src/joiner.js",
 		"/C/Projects/Mood-Web/src/shader_source.js",
@@ -1537,13 +1470,7 @@
 		"/C/Projects/Visual-Computer/src/datas.h",
 		"/C/Projects/Visual-Computer/src/joiner.h",
 		"/C/Projects/Visual-Computer/src/joiner.cpp",
-		"/C/Projects/Visual-Computer/src/datas.cpp",
-		"/C/Projects/Visual-Computer/src/core/timer.cpp",
-		"/C/Projects/Visual-Computer/src/core/timer.h",
-		"/C/Projects/Visual-Computer/src/core/input.h",
-		"/C/Projects/Visual-Computer/src/core/input.cpp",
-		"/C/Projects/Visual-Computer/project.sublime-project",
-		"/C/Projects/Visual-Computer/engine.cpp"
+		"/C/Projects/Visual-Computer/src/datas.cpp"
 	],
 	"find":
 	{
@@ -1563,6 +1490,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"clientList",
+			"tile",
+			"player",
 			"platform",
 			"\t\t\tthis.rectangle.updateIndex(this.currentState);\n",
 			"platformList",
@@ -1687,10 +1617,7 @@
 			"QuadTexturedCorrected",
 			"texture_sheet",
 			"\"res/texture_sheet.png\"",
-			"node.splitter",
-			"QuadTextured",
-			"loadImages",
-			"QuadTexturedCorrected"
+			"node.splitter"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1708,170 +1635,24 @@
 	"groups":
 	[
 		{
-			"selected": 5,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3339,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								261,
-								261
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 12,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 596,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								573,
-								573
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 11,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
 					"file": "server/server.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5607,
+						"buffer_size": 6203,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4773,
-								4773
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 1672.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 8,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/engine.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3470,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								162,
-								162
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 9,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
-					"file": "server/package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 344,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								318,
-								318
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 10,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "src/joiner.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2029,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								281,
-								281
+								537,
+								537
 							]
 						],
 						"settings":
@@ -1887,8 +1668,8 @@
 					"type": "text"
 				},
 				{
-					"buffer": 6,
-					"file": "src/player.js",
+					"buffer": 1,
+					"file": "src/client.js",
 					"semi_transient": false,
 					"settings":
 					{
@@ -1899,8 +1680,8 @@
 						"selection":
 						[
 							[
-								3709,
-								3709
+								691,
+								691
 							]
 						],
 						"settings":
@@ -1909,172 +1690,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1392.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 7,
-					"file": "src/s_entities.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1449,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1305,
-								1305
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 8,
-					"file": "src/geometry.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4090,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								234,
-								234
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 4,
-					"type": "text"
-				},
-				{
-					"buffer": 9,
-					"file": "src/shader_source.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 2001,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1568,
-								1568
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 5,
-					"type": "text"
-				},
-				{
-					"buffer": 10,
-					"file": "src/client.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4099,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1033,
-								1033
-							]
-						],
-						"settings":
-						{
-							"history_list_is_closing": true,
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 959.0,
+						"translation.y": 181.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 1,
-					"file": "style.css",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 596,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								596,
-								596
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/CSS/CSS.sublime-syntax"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 13,
-					"type": "text"
-				},
-				{
 					"buffer": 2,
-					"file": "server/server.js",
+					"file": "src/joiner.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5607,
+						"buffer_size": 2102,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5607,
-								5607
+								0,
+								0
 							]
 						],
 						"settings":
@@ -2083,40 +1719,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1846.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": "src/engine.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3470,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								711,
-								711
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -2179,16 +1785,28 @@
 		"selected_items":
 		[
 			[
+				"jo",
+				"src\\joiner.js"
+			],
+			[
+				"joi",
+				"src\\joiner.js"
+			],
+			[
+				"cli",
+				"src\\client.js"
+			],
+			[
+				"ser",
+				"server\\server.js"
+			],
+			[
 				"play",
 				"src\\player.js"
 			],
 			[
 				"server",
 				"server\\server.js"
-			],
-			[
-				"cli",
-				"src\\client.js"
 			],
 			[
 				"player",
@@ -2245,10 +1863,6 @@
 			[
 				"geo",
 				"src\\geometry.js"
-			],
-			[
-				"joi",
-				"src\\joiner.js"
 			],
 			[
 				"",
@@ -2325,10 +1939,6 @@
 			[
 				"draw",
 				"src\\core\\drawing.cpp"
-			],
-			[
-				"jo",
-				"src\\joiner.cpp"
 			],
 			[
 				"first",

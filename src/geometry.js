@@ -5,24 +5,31 @@ function denormalizeColor(color) {
 //10x5
 function getTextureCoordinates(index) {
 	var coordinates = [];
+	var offset = 0.0005;
 
 	if (index == 0) {
-		coordinates.push(0.0);
-		coordinates.push(0.2);
-		coordinates.push(0.0);
-		coordinates.push(0.2);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
 	}
 	if (index == 1) {
-		coordinates.push(0.2);
-		coordinates.push(0.4);
-		coordinates.push(0.0);
-		coordinates.push(0.2);
+		coordinates.push(0.2 + offset);
+		coordinates.push(0.4 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
 	}
 	if (index == 2) {
-		coordinates.push(0.4);
-		coordinates.push(0.6);
-		coordinates.push(0.0);
-		coordinates.push(0.2);
+		coordinates.push(0.4 + offset);
+		coordinates.push(0.6 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
+	}
+	if (index == 3) {
+		coordinates.push(0.6 + offset);
+		coordinates.push(0.7 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
 	}
 
 	return coordinates;

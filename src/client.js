@@ -1,4 +1,6 @@
 var TILE_MAP;
+var currentMarkerPosition;
+var currentMarkerGameState;
 
 var clientList = [];
 var sessionKey = "";
@@ -27,8 +29,12 @@ function register(username, password) {
 	document.getElementById('password-input').value = "";
 }
 
-function collisionWithGate() {
+function collisionGate() {
 	socket.emit('collision_gate', { key: sessionKey });
+}
+
+function collisionMarker() {
+	socket.emit('collision_marker', { key: sessionKey, position: [joiner.player.rectangle.x, joiner.player.rectangle.y] });
 }
 
 function sizeChange(size) {
@@ -38,6 +44,9 @@ function sizeChange(size) {
 function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
+		currentMarkerPosition = data.current_marker.position;
+		currentMarkerGameState = data.current_marker.gameState;
+		
 		cancelAnimationFrame(mainReq);
 		initialize();
 
@@ -47,11 +56,10 @@ function createClientListeners() {
 		clientList = data.client_list;
 		clientList.forEach(client => {
 			if (client.username.length > 0) {
-				client.rectangle = new Rectangle(undefined, undefined, 25, 25, [0,255,0,100]);
+				if (client.gameState == 1){ client.rectangle = new Rectangle(undefined, undefined, 25, 25, [0,0,255,100]); }
+				else { client.rectangle = new Rectangle(undefined, undefined, 25, 25, [0,255,0,100]); }
 			}
-			else {
-				client.rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
-			}
+			else { client.rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]); }
 		});
 	});
 
@@ -91,7 +99,7 @@ function createClientListeners() {
 
 	socket.on('new_client', (data) => {
 		clientList.push(data.client);
-		clientList[clientList.length - 1].rectangle = new Rectangle(undefined, undefined, 25, 25, [255,0,0,100]);
+		clientList[clientList.length - 1].rectangle = new Rectangle(undefined, undefined, PLAYER_WIDTH, PLAYER_HEIGHT, [255,0,0,100]);
 	});
 
 	socket.on('updated_position', (data) => {
@@ -135,6 +143,21 @@ function createClientListeners() {
 				if (joiner.platformList[x].id == 3) {
 					joiner.platformList[x].incrementState();
 				}
+			}
+		}
+
+		if (data.type == "marker") {
+			joiner.player.setColor([0,0,255,255]);
+			joiner.player.gameState = 1;
+			joiner.marker.gameState = 1;
+		}
+	});
+
+	socket.on('marker_collected', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id.toString() == data.client_id) {
+				clientList[x].rectangle.color = [0,0,255,255];
+				joiner.marker.gameState = 1;
 			}
 		}
 	});

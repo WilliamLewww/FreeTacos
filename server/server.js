@@ -1,5 +1,25 @@
+const MARKER_POSITION_COUNT = 7;
+const TILE_MAP = [
+	[7,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,7],
+	[0,5,5,5,0,5,5,0,7,5,5,0,5,5,0,5,5,0,5,5,0,0,0,0,0],
+	[0,0,0,0,0,0,0,4,4,0,0,4,0,0,0,0,6,0,6,6,6,4,0,0,5],
+	[2,6,0,4,4,0,0,5,5,0,0,0,0,4,0,0,0,0,6,7,0,0,0,0,0],
+	[5,5,0,0,0,0,0,4,0,0,0,4,0,0,0,0,6,0,6,0,6,4,0,0,5],
+	[7,4,4,0,0,4,0,0,0,4,0,0,0,0,5,5,6,0,0,0,6,0,0,0,0],
+	[0,5,0,0,0,0,0,0,0,0,0,0,0,4,0,7,4,2,4,0,6,4,0,0,5],
+	[0,0,0,5,0,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0],
+	[4,0,5,5,5,0,6,7,4,6,4,0,0,4,6,4,0,0,4,4,0,0,0,4,6],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,0,1,1],
+	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,0,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
+	[1,0,0,1,1,1,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,1],
+	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+];
+
 const URL = "mongodb://username:HrLgtjuOPMVqCENl@freetacos-shard-00-00-wovzf.mongodb.net:27017,freetacos-shard-00-01-wovzf.mongodb.net:27017,freetacos-shard-00-02-wovzf.mongodb.net:27017/test?ssl=true&replicaSet=FreeTacos-shard-0&authSource=admin&retryWrites=true";
 var clientList = [];
+var currentMarker = new Marker(getRandomMarkerLocation());
 
 var MongoClient = require('mongodb').MongoClient;
 var bcrypt = require('bcryptjs');
@@ -14,7 +34,7 @@ app.get('/*', (req, res) => {
 });
 
 io.on('connection', (socket) => {
-	socket.emit('initial_connection', { client_list: clientList, tile_map: TILE_MAP });
+	socket.emit('initial_connection', { client_list: clientList, tile_map: TILE_MAP, current_marker: currentMarker });
 
 	socket.on('verified_connection', (data) => {
 		console.log('New Client with ID: ' + socket.id);
@@ -63,6 +83,17 @@ io.on('connection', (socket) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
 				socket.emit('confirm_collision', { type: "gate" });
+			}
+		}
+	});
+
+	socket.on('collision_marker', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
+				currentMarker.gameState = 1;
+				clientList[x].gameState = 1;
+				socket.emit('confirm_collision', { type: "marker" });
+				socket.broadcast.emit('marker_collected', { client_id: socket.id });
 			}
 		}
 	});
@@ -151,22 +182,30 @@ function Client(ID, position) {
 
 	this.username = "";
 	this.sessionKey = "no-key";
+
+	this.gameState = 0;
 }
 
-const TILE_MAP = [
-	[0,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,0],
-	[0,5,5,5,0,5,5,0,0,5,5,0,5,5,0,5,5,0,5,5,0,0,0,0,0],
-	[0,0,0,0,0,0,0,4,4,0,0,4,0,0,0,0,6,0,6,6,6,4,0,0,5],
-	[2,6,0,4,4,0,0,5,5,0,0,0,0,4,0,0,0,0,6,0,0,0,0,0,0],
-	[5,5,0,0,0,0,0,4,0,0,0,4,0,0,0,0,6,0,6,0,6,4,0,0,5],
-	[0,4,4,0,0,4,0,0,0,4,0,0,0,0,5,5,6,0,0,0,6,0,0,0,0],
-	[6,5,0,0,0,0,0,0,0,0,0,0,0,4,0,0,4,2,4,0,6,4,0,0,5],
-	[5,0,0,5,0,5,5,5,5,5,5,0,0,5,5,5,5,5,5,5,5,0,0,0,0],
-	[4,0,5,5,5,0,6,0,4,6,4,0,0,4,6,4,0,0,4,4,0,0,0,4,6],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,3,0,1,1],
-	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,0,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,1,1,1,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,1],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
-];
+function Marker(position) {
+	this.position = [position[0], position[1]];
+
+	this.gameState = 0;
+}
+
+function getRandomMarkerLocation() {
+	var index = Math.floor(Math.random() * MARKER_POSITION_COUNT);
+	var count = 0;
+
+	for (var y = 0; y < TILE_MAP.length; y++) {
+		for (var x = 0; x < TILE_MAP[y].length; x++) {
+			if (TILE_MAP[y][x] == 7 ) {
+				if (count == index) {
+					return [x * 40, y * 40];
+				}
+				count += 1;
+			}
+		}
+	}
+
+	return [0, 0];
+}
