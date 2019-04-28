@@ -40,6 +40,10 @@ function sizeChange(size) {
 	socket.emit('size_change', { size: size } );
 }
 
+function requestScores() {
+	socket.emit('request_scores', { key: sessionKey });
+}
+
 function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
@@ -75,6 +79,7 @@ function createClientListeners() {
 	});
 
 	socket.on('session_key', (data) => {
+		joiner.player.setColor([0,255,0,255]);
 		sessionKey = data.key;
 		document.getElementById('username-input').remove();
 		document.getElementById('password-input').remove();
@@ -92,7 +97,18 @@ function createClientListeners() {
 		accountDiv.innerHTML = "";
 		accountDiv.appendChild(usernameText);
 		accountDiv.appendChild(logoutButton);
-		joiner.player.setColor([0,255,0,255]);
+
+		var scoreDiv = document.getElementById('score-div');
+		var markerScoreText = document.createElement('p');
+		markerScoreText.id = "marker-score";
+		markerScoreText.innerHTML = 'Marker Score: ';
+		var playerScoreText = document.createElement('p');
+		playerScoreText.id = "player-score";
+		playerScoreText.innerHTML = 'Player Score: ';
+		scoreDiv.appendChild(markerScoreText);
+		scoreDiv.appendChild(playerScoreText);
+
+		requestScores();
 	});
 
 	socket.on('new_client', (data) => {
@@ -148,6 +164,7 @@ function createClientListeners() {
 			joiner.player.setColor([0,0,255,255]);
 			joiner.player.gameState = 1;
 			joiner.marker.setPosition(data.current_marker.position);
+			requestScores();
 		}
 	});
 
@@ -159,6 +176,11 @@ function createClientListeners() {
 		}
 
 		joiner.marker.setPosition(data.current_marker.position);
+	});
+
+	socket.on('sent_scores', (data) => {
+		document.getElementById('marker-score').innerHTML = 'Marker Score: ' + data.marker_collected;
+		document.getElementById('player-score').innerHTML = 'Player Score: ' + data.player_collected;
 	});
 }
 

@@ -94,6 +94,7 @@ io.on('connection', (socket) => {
 				if (data.position[0] + 40 >= currentMarker.position[0] && data.position[0] <= currentMarker.position[0] + 40 &&
 					data.position[1] + 40 >= currentMarker.position[1] && data.position[1] <= currentMarker.position[1] + 40) {
 					
+					incrementMarkerScore(clientList[x].username);
 					clientList[x].gameState = 1;
 					resetMarkerPosition();
 					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
@@ -102,7 +103,30 @@ io.on('connection', (socket) => {
 			}
 		}
 	});
+
+	socket.on('request_scores', (data) => {
+		sendScores(socket, data.key);
+	});
 });
+
+function sendScores(socket, key) {
+	for (var x = 0; x < clientList.length; x++) {
+		if (clientList[x].id == socket.id && clientList[x].sessionKey == key) {
+			var username = clientList[x].username;
+			MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+				if (err) throw err;
+				var dbo = db.db("network_game");
+				dbo.collection("accounts").findOne({username: username}, (err, result) => {
+					if (err) throw err;
+					if (result) {
+						socket.emit('sent_scores', { marker_collected: result.marker_collected, player_collected: result.player_collected });
+					}
+					db.close();
+				});
+			});
+		}
+	}
+}
 
 function attemptLogin(socket, username, password) {
 	var connectionAlreadyExists = false;
@@ -135,19 +159,19 @@ function attemptLogin(socket, username, password) {
 }
 
 function login(socket, username) {
-	console.log("User Logged in: " + username);
 	var sessionKey = bcrypt.hashSync(String(Date.now()), 8);
-	socket.emit('alert_message', { message: "Successful Login!" });
-	socket.emit('session_key', { key: sessionKey, username: username });
-
-	socket.broadcast.emit('change_color', { client_id: socket.id, color: "green" });
-
 	for (var x = 0; x < clientList.length; x++) {
 		if (clientList[x].id == socket.id) {
 			clientList[x].username = username;
 			clientList[x].sessionKey = sessionKey;
 		}
 	}
+
+	console.log("User Logged in: " + username);
+	socket.emit('alert_message', { message: "Successful Login!" });
+	socket.emit('session_key', { key: sessionKey, username: username });
+
+	socket.broadcast.emit('change_color', { client_id: socket.id, color: "green" });
 }
 
 function attemptRegister(socket, username, password) {
@@ -172,10 +196,46 @@ function register(socket, username, password) {
 	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
 		if (err) throw err;
 		var dbo = db.db("network_game");
-		dbo.collection("accounts").insertOne({username: username, password: hash, type: 0}, (err, result) => {
+		dbo.collection("accounts").insertOne({username: username, password: hash, type: 0, marker_collected: 0, player_collected: 0}, (err, result) => {
 			if (err) throw err;
 			console.log("Created New User: " + username);
 			socket.emit('alert_message', { message: "Successfully Created an Account!" });
+			db.close();
+		});
+	});
+}
+
+function incrementMarkerScore(username) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		dbo.collection("accounts").findOne({username: username}, (err, result) => {
+			if (err) throw err;
+			var newValue = { $set: {marker_collected: result.marker_collected + 1}};
+			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
+				if (err) throw err;
+				if (resultSecond) {
+					console.log("User: " + username + " updated score to: " + (result.marker_collected + 1));
+				}
+			});
+			db.close();
+		});
+	});
+}
+
+function incrementPlayerScore(username) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		dbo.collection("accounts").findOne({username: username}, (err, result) => {
+			if (err) throw err;
+			var newValue = { $set: {player_collected: result.player_collected + 1}};
+			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
+				if (err) throw err;
+				if (resultSecond) {
+					console.log("User: " + username + " updated score to: " + (result.player_collected + 1));
+				}
+			});
 			db.close();
 		});
 	});

@@ -4,6 +4,26 @@
 		"selected_items":
 		[
 			[
+				"clien",
+				"clientList"
+			],
+			[
+				"curr",
+				"currentMarker"
+			],
+			[
+				"curre",
+				"currentMarker"
+			],
+			[
+				"ga",
+				"gameState"
+			],
+			[
+				"curren",
+				"currentMarkerGameState"
+			],
+			[
 				"PLAY",
 				"PLAYER_WIDTH\t(joiner.js)"
 			],
@@ -22,10 +42,6 @@
 			[
 				"plaf",
 				"platformList\t(joiner.js)"
-			],
-			[
-				"curre",
-				"currentState\t(s_entities.js)"
 			],
 			[
 				"pl",
@@ -268,10 +284,6 @@
 				"QuadTextured"
 			],
 			[
-				"curr",
-				"currentID"
-			],
-			[
 				"Arr",
 				"ARRAY_BUFFER"
 			],
@@ -502,28 +514,25 @@
 			[
 				"wal",
 				"wallList"
-			],
-			[
-				"mouse",
-				"mouseY"
-			],
-			[
-				"mou",
-				"mouseX"
-			],
-			[
-				"di",
-				"displayWindow"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "src/geometry.js",
+			"settings":
+			{
+				"buffer_size": 4378,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "server/server.js",
 			"settings":
 			{
-				"buffer_size": 6203,
+				"buffer_size": 7240,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -532,7 +541,7 @@
 			"file": "src/client.js",
 			"settings":
 			{
-				"buffer_size": 4181,
+				"buffer_size": 4913,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -541,7 +550,26 @@
 			"file": "src/joiner.js",
 			"settings":
 			{
-				"buffer_size": 2102,
+				"buffer_size": 2235,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/s_entities.js",
+			"settings":
+			{
+				"buffer_size": 2120,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "src/player.js",
+			"settings":
+			{
+				"buffer_size": 5196,
+				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		}
@@ -1490,6 +1518,16 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"gameState",
+			"marker.gameState",
+			"currentMarker.gameState",
+			"currentMarkerGameState",
+			"currentMarker.gameState",
+			"currentMarker.gameState = 1",
+			"gameState = 1",
+			"gameState",
+			"currentMarker",
+			"255",
 			"clientList",
 			"tile",
 			"player",
@@ -1607,17 +1645,7 @@
 			"cameraProperties",
 			"255",
 			"foreach",
-			"currentID",
-			"currentID\n",
-			"crossMultiply",
-			"360",
-			"270",
-			"25",
-			"0001",
-			"QuadTexturedCorrected",
-			"texture_sheet",
-			"\"res/texture_sheet.png\"",
-			"node.splitter"
+			"currentID"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1635,24 +1663,53 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "server/server.js",
+					"file": "src/geometry.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6203,
+						"buffer_size": 4378,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								537,
-								537
+								832,
+								832
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 129.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "server/server.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 7240,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1583,
+								1583
 							]
 						],
 						"settings":
@@ -1668,20 +1725,20 @@
 					"type": "text"
 				},
 				{
-					"buffer": 1,
+					"buffer": 2,
 					"file": "src/client.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4181,
+						"buffer_size": 4913,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								691,
-								691
+								1624,
+								1633
 							]
 						],
 						"settings":
@@ -1690,27 +1747,27 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 181.0,
+						"translation.y": 294.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
 					"type": "text"
 				},
 				{
-					"buffer": 2,
+					"buffer": 3,
 					"file": "src/joiner.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 2102,
+						"buffer_size": 2235,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								0,
-								0
+								1343,
+								1343
 							]
 						],
 						"settings":
@@ -1723,6 +1780,64 @@
 						"zoom_level": 1.0
 					},
 					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "src/s_entities.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2120,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								75,
+								75
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "src/player.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5196,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								265,
+								274
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
 					"type": "text"
 				}
 			]
@@ -1785,6 +1900,18 @@
 		"selected_items":
 		[
 			[
+				"play",
+				"src\\player.js"
+			],
+			[
+				"geo",
+				"src\\geometry.js"
+			],
+			[
+				"s_",
+				"src\\s_entities.js"
+			],
+			[
 				"jo",
 				"src\\joiner.js"
 			],
@@ -1799,10 +1926,6 @@
 			[
 				"ser",
 				"server\\server.js"
-			],
-			[
-				"play",
-				"src\\player.js"
 			],
 			[
 				"server",
@@ -1859,10 +1982,6 @@
 			[
 				"firs",
 				"src\\first_person.js"
-			],
-			[
-				"geo",
-				"src\\geometry.js"
 			],
 			[
 				"",
