@@ -168,6 +168,11 @@ function createClientListeners() {
 
 		if (data.type == "marker") {
 			joiner.player.setColor([0,0,255,255]);
+			for (var x = 0; x < clientList.length; x++) { 
+				if (clientList[x].rectangle.color[2] == 255) {
+					clientList[x].rectangle.color = [0,255,0,255];
+				}
+			}
 			joiner.player.gameState = 1;
 			joiner.marker.setPosition(data.current_marker.position);
 			requestScores();
@@ -179,6 +184,8 @@ function createClientListeners() {
 	});
 
 	socket.on('marker_collected', (data) => {
+		joiner.player.setColor([0,255,0,255]);
+
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id.toString() == data.client_id) {
 				clientList[x].rectangle.color = [0,0,255,255];
