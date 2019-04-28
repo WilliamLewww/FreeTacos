@@ -38,6 +38,14 @@ function Joiner() {
 	this.update = (elapsedTimeMS) => {
 		this.player.update(elapsedTimeMS);
 
+		if (this.player.gameState == 1) {
+			clientList.forEach(client => {
+				if (this.player.checkCollisionClient(client)) {
+					collisionPlayer(client.id);
+				}
+			});
+		}
+
 		if (this.player.checkCollision(this.marker)) {
 			collisionMarker();
 		}

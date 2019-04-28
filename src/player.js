@@ -135,8 +135,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	}
 
 	this.checkCollisionClient = (client) => {
-		if (this.right() >= client.rectangle.x && this.left() <= client.rectangle.x + client.rectangle.width &&
-			this.bottom() >= client.rectangle.y && this.top() <= client.rectangle.y + client.rectangle.height) {
+		if (this.right() >= client.position[0] && this.left() <= client.position[0] + client.rectangle.width &&
+			this.bottom() >= client.position[1] && this.top() <= client.position[1] + client.rectangle.height) {
 
 			return true;
 		}

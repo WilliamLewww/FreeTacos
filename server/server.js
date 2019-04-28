@@ -1,3 +1,5 @@
+const SPAWN_POSITION = [50,525];
+
 const MARKER_POSITION_COUNT = 7;
 const TILE_MAP = [
 	[7,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,7],
@@ -91,14 +93,33 @@ io.on('connection', (socket) => {
 	socket.on('collision_marker', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
-				if (data.position[0] + 40 >= currentMarker.position[0] && data.position[0] <= currentMarker.position[0] + 40 &&
-					data.position[1] + 40 >= currentMarker.position[1] && data.position[1] <= currentMarker.position[1] + 40) {
+				if (clientList[x].position[0] + 40 >= currentMarker.position[0] && clientList[x].position[0] <= currentMarker.position[0] + 40 &&
+					clientList[x].position[1] + 40 >= currentMarker.position[1] && clientList[x].position[1] <= currentMarker.position[1] + 40) {
 					
 					incrementMarkerScore(clientList[x].username);
 					clientList[x].gameState = 1;
 					resetMarkerPosition();
 					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
 					socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
+				}
+			}
+		}
+	});
+
+	socket.on('collision_player', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
+				for (var y = 0; y < clientList.length; y++) {
+					if (clientList[y].id == data.o_client_id) {
+						if (clientList[x].position[0] + 40 >= clientList[y].position[0] && clientList[x].position[0] <= clientList[y].position[0] + 40 &&
+							clientList[x].position[1] + 40 >= clientList[y].position[1] && clientList[x].position[1] <= clientList[y].position[1] + 40) {
+
+							incrementPlayerScore(clientList[x].username);
+							clientList[y].position = SPAWN_POSITION;
+							socket.emit('confirm_collision', { type: "player" });
+							socket.broadcast.emit('player_collected', { key: clientList[y].sessionKey });
+						}
+					}
 				}
 			}
 		}
@@ -215,7 +236,7 @@ function incrementMarkerScore(username) {
 			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
 				if (err) throw err;
 				if (resultSecond) {
-					console.log("User: " + username + " updated score to: " + (result.marker_collected + 1));
+					console.log("User: " + username + " Updated Marker Score to: " + (result.marker_collected + 1));
 				}
 			});
 			db.close();
@@ -233,7 +254,7 @@ function incrementPlayerScore(username) {
 			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
 				if (err) throw err;
 				if (resultSecond) {
-					console.log("User: " + username + " updated score to: " + (result.player_collected + 1));
+					console.log("User: " + username + " Updated Player Score to: " + (result.player_collected + 1));
 				}
 			});
 			db.close();

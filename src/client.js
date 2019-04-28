@@ -1,3 +1,5 @@
+const SPAWN_POSITION = [50,525];
+
 var TILE_MAP;
 var currentMarkerPosition;
 
@@ -33,7 +35,11 @@ function collisionGate() {
 }
 
 function collisionMarker() {
-	socket.emit('collision_marker', { key: sessionKey, position: [joiner.player.rectangle.x, joiner.player.rectangle.y] });
+	socket.emit('collision_marker', { key: sessionKey });
+}
+
+function collisionPlayer(clientID) {
+	socket.emit('collision_player', { key: sessionKey, o_client_id: clientID });
 }
 
 function sizeChange(size) {
@@ -166,6 +172,10 @@ function createClientListeners() {
 			joiner.marker.setPosition(data.current_marker.position);
 			requestScores();
 		}
+
+		if (data.type == "player") {
+			requestScores();
+		}
 	});
 
 	socket.on('marker_collected', (data) => {
@@ -176,6 +186,13 @@ function createClientListeners() {
 		}
 
 		joiner.marker.setPosition(data.current_marker.position);
+	});
+
+	socket.on('player_collected', (data) => {
+		if (data.key.toString() == sessionKey) {
+			joiner.player.rectangle.x = SPAWN_POSITION[0];
+			joiner.player.rectangle.y = SPAWN_POSITION[1];
+		}
 	});
 
 	socket.on('sent_scores', (data) => {
