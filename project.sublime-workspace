@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"net",
+				"network_game"
+			],
+			[
+				"collisionMa",
+				"collisionMarkerIndex"
+			],
+			[
 				"clie",
 				"clientList"
 			],
@@ -506,33 +514,34 @@
 			[
 				"root",
 				"rootNode"
-			],
-			[
-				"roo",
-				"rootNode"
-			],
-			[
-				"po",
-				"pointA"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "src/geometry.js",
+			"file": "server/server.js",
 			"settings":
 			{
-				"buffer_size": 4378,
+				"buffer_size": 11456,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server/server.js",
+			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 10197,
+				"buffer_size": 3609,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 653,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -541,7 +550,7 @@
 			"file": "src/client.js",
 			"settings":
 			{
-				"buffer_size": 6028,
+				"buffer_size": 6234,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -560,15 +569,6 @@
 			"settings":
 			{
 				"buffer_size": 5196,
-				"encoding": "UTF-8",
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "index.html",
-			"settings":
-			{
-				"buffer_size": 3479,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -1380,14 +1380,14 @@
 	],
 	"file_history":
 	[
+		"/C/Projects/FreeTacos/index.html",
+		"/C/Projects/FreeTacos/src/geometry.js",
 		"/C/Projects/FreeTacos/src/joiner.js",
 		"/C/Projects/FreeTacos/src/engine.js",
 		"/C/Projects/FreeTacos/server/server.js",
 		"/C/Projects/FreeTacos/style.css",
 		"/C/Projects/FreeTacos/src/client.js",
 		"/C/Projects/FreeTacos/src/shader_source.js",
-		"/C/Projects/FreeTacos/src/geometry.js",
-		"/C/Projects/FreeTacos/index.html",
 		"/C/Projects/FreeTacos/server/package.json",
 		"/C/Projects/FreeTacos/src/player.js",
 		"/C/Projects/FreeTacos/src/s_entities.js",
@@ -1527,6 +1527,9 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"15",
+			"login",
+			"collisionMarkerID",
 			"confirm_collision",
 			"player_collected",
 			"currentMarker",
@@ -1651,10 +1654,7 @@
 			"increaseInterval",
 			"decreaseInterval",
 			"alpha-inter",
-			"instruction",
-			"alphaInterval",
-			"buffer",
-			"alphaInterval"
+			"instruction"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1677,48 +1677,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "src/geometry.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4378,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								261,
-								261
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 129.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "server/server.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 10197,
+						"buffer_size": 11456,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								4859,
-								4859
+								625,
+								625
 							]
 						],
 						"settings":
@@ -1727,7 +1698,36 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 1134.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 3609,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2863,
+								2863
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 762.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
@@ -1735,19 +1735,47 @@
 				},
 				{
 					"buffer": 2,
-					"file": "src/client.js",
+					"file": "style.css",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6028,
+						"buffer_size": 653,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5651,
-								5651
+								269,
+								269
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "src/client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 6234,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								5233,
+								5233
 							]
 						],
 						"settings":
@@ -1756,14 +1784,14 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2101.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 5,
 					"type": "text"
 				},
 				{
-					"buffer": 3,
+					"buffer": 4,
 					"file": "src/joiner.js",
 					"semi_transient": false,
 					"settings":
@@ -1788,11 +1816,11 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
-					"buffer": 4,
+					"buffer": 5,
 					"file": "src/player.js",
 					"semi_transient": false,
 					"settings":
@@ -1804,8 +1832,8 @@
 						"selection":
 						[
 							[
-								3827,
-								3827
+								20,
+								20
 							]
 						],
 						"settings":
@@ -1814,39 +1842,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 586.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 5,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 3479,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								2388,
-								2388
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
@@ -1875,7 +1874,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 6,
 					"type": "text"
 				}
 			]
@@ -1938,6 +1937,14 @@
 		"selected_items":
 		[
 			[
+				"css",
+				"style.css"
+			],
+			[
+				"inde",
+				"index.html"
+			],
+			[
 				"ind",
 				"index.html"
 			],
@@ -1992,14 +1999,6 @@
 			[
 				"cl",
 				"src\\client.js"
-			],
-			[
-				"css",
-				"style.css"
-			],
-			[
-				"inde",
-				"index.html"
 			],
 			[
 				"engi",

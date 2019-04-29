@@ -266,6 +266,45 @@ function incrementPlayerScore(username) {
 	});
 }
 
+function getTopMarkerAccounts(socket) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		var sortingOrder = { marker_collected: -1 };
+		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
+			if (err) throw err;
+			socket.emit(result);
+			db.close();
+		});
+	});
+}
+
+function getTopPlayerAccounts(socket) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		var sortingOrder = { player_collected: -1 };
+		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
+			if (err) throw err;
+			socket.emit(result);
+			db.close();
+		});
+	});
+}
+
+function getTopOverallAccounts(socket) {
+	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
+		if (err) throw err;
+		var dbo = db.db("network_game");
+		var sortingOrder = { marker_collected: -1, player_collected: -1 };
+		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
+			if (err) throw err;
+			socket.emit(result);
+			db.close();
+		});
+	});
+}
+
 function Client(ID, position) {
 	this.id = ID;
 	this.position = [position[0], position[1]];

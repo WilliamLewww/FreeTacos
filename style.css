@@ -12,6 +12,10 @@ canvas {
 	background-color: #6495ED;
 }
 
+.background-color-black {
+	background-color: #000000;
+}
+
 .title-text {
 	font-size: 24px;
 	text-align: center;
