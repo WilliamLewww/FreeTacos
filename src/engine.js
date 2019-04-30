@@ -8,10 +8,6 @@ var programList = [];
 var joiner;
 var mainReq;
 
-var frameStart = Date.now();
-var frameEnd = Date.now();
-var deltaTime = 0;
-
 var textureCount = 50;
 var textureSheet = false;
 var texture;
@@ -57,14 +53,17 @@ function initialize() {
   mainLoop();
 }
 
-function mainLoop() {
+var frameEnd = 0, deltaTime = 0;
+function mainLoop(frameStart) {
   mainReq = requestAnimationFrame(mainLoop);
 
-  frameStart = Date.now();
   deltaTime = frameStart - frameEnd;
   frameEnd = frameStart;
-  update(deltaTime);
-  draw();
+
+  if (deltaTime < 100.0) {
+    update(deltaTime);
+    draw();
+  }
 }
 
 function update(elapsedTimeMS) {

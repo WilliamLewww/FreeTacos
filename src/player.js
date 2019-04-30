@@ -1,5 +1,8 @@
 const GRAVITY = 9.8;
 
+const MOVE_SPEED = [125, 80];
+const JUMP_SPEED = [250, 150];
+
 function Player(position, width, height, color = [255,0,0,255]) {
 	this.rectangle = new Rectangle(position[0], position[1], width, height, color);
 	this.velocityX = 0;
@@ -15,8 +18,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.previousY = 0;
 	this.positionTimer = 0.0;
 
-	this.moveSpeed = 125;
-	this.jumpHeight = 225;
+	this.moveSpeed = MOVE_SPEED[0];
+	this.jumpSpeed = JUMP_SPEED[0];
 
 	this.top = () => { return this.rectangle.y; }
 	this.bottom = () => { return this.rectangle.y + this.rectangle.height; }
@@ -63,12 +66,14 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			if (inputList.indexOf(32) != -1) {
 				this.canJump = false;
 				this.onGround = false;
-				this.velocityY = -this.jumpHeight;
+				this.velocityY = -this.jumpSpeed;
 			}
 		}
 
-		this.rectangle.x += this.velocityX * (elapsedTimeMS / 1000.0);
-		this.rectangle.y += this.velocityY * (elapsedTimeMS / 1000.0);
+		if (!isNaN(elapsedTimeMS)) {
+			this.rectangle.x += this.velocityX * (elapsedTimeMS / 1000.0);
+			this.rectangle.y += this.velocityY * (elapsedTimeMS / 1000.0);
+		}
 
 		if (this.positionTimer >= POSITION_INTERVAL) {
 			if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
@@ -88,8 +93,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (this.isSmall == false) {
 			this.rectangle.height = PLAYER_HEIGHT / 2;
 			this.rectangle.y += PLAYER_HEIGHT / 2;
-			this.moveSpeed = 75;
-			this.jumpHeight = 150;
+			this.moveSpeed = MOVE_SPEED[1];
+			this.jumpSpeed = JUMP_SPEED[1];
 			this.isSmall = true;
 			sizeChange("small");
 		}
@@ -109,8 +114,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (canChangeToBig && this.isSmall == true) {
 			this.rectangle.height = PLAYER_HEIGHT;
 			this.rectangle.y -= PLAYER_HEIGHT / 2;
-			this.moveSpeed = 125;
-			this.jumpHeight = 225;
+			this.moveSpeed = MOVE_SPEED[0];
+			this.jumpSpeed = JUMP_SPEED[0];
 			this.isSmall = false;
 			sizeChange("medium");
 		}
@@ -167,7 +172,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 							this.velocityY = 0;
 						}
 						if (platform.id == 2) {
-							this.velocityY = -this.jumpHeight * 1.8;
+							this.velocityY = -this.jumpSpeed * 1.9;
 						}
 					}
 				}
