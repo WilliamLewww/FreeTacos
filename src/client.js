@@ -50,10 +50,23 @@ function requestScores() {
 	socket.emit('request_scores', { key: sessionKey });
 }
 
+function setupLeaderboard() {
+	clearLeaderboard();
+	requestTopMarker();
+	requestTopPlayer();
+	requestTopOverall();
+}
+
+function requestTopMarker() { socket.emit('request_top_marker'); }
+function requestTopPlayer() { socket.emit('request_top_player'); }
+function requestTopOverall() { socket.emit('request_top_overall'); }
+
 function createClientListeners() {
 	socket.on('initial_connection', (data) => {
 		TILE_MAP = data.tile_map;
 		currentMarkerPosition = data.current_marker.position;
+
+		setupLeaderboard();
 		
 		cancelAnimationFrame(mainReq);
 		initialize();
@@ -206,8 +219,54 @@ function createClientListeners() {
 		document.getElementById('marker-score').innerHTML = 'Marker Score: ' + data.marker_collected;
 		document.getElementById('player-score').innerHTML = 'Player Score: ' + data.player_collected;
 	});
+
+	socket.on('sent_top_marker', (data) => {
+		var counter = 1;
+		var leaderboardDiv = document.getElementById('leaderboard-marker');
+		data.account_list.forEach(account => {
+			var leaderboardText = document.createElement('p');
+			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
+			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.setAttribute('id', 'leaderboard-data');
+			leaderboardDiv.appendChild(leaderboardText);
+
+			counter += 1;
+		});
+	});
+	socket.on('sent_top_player', (data) => {
+		var counter = 1;
+		var leaderboardDiv = document.getElementById('leaderboard-player');
+		data.account_list.forEach(account => {
+			var leaderboardText = document.createElement('p');
+			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
+			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.setAttribute('id', 'leaderboard-data');
+			leaderboardDiv.appendChild(leaderboardText);
+
+			counter += 1;
+		});
+	});
+	socket.on('sent_top_overall', (data) => {
+		var counter = 1;
+		var leaderboardDiv = document.getElementById('leaderboard-overall');
+		data.account_list.forEach(account => {
+			var leaderboardText = document.createElement('p');
+			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
+			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.setAttribute('id', 'leaderboard-data');
+			leaderboardDiv.appendChild(leaderboardText);
+
+			counter += 1;
+		});
+	});
 }
 
 function sendPosition() {
 	socket.emit('sent_position', { position: [joiner.player.rectangle.x, joiner.player.rectangle.y] });
+}
+
+function clearLeaderboard() {
+	while (document.getElementById('leaderboard-data') != null) {
+		document.getElementById('leaderboard-data').remove();
+	}
 }

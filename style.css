@@ -41,3 +41,11 @@ canvas {
 	padding-left: 10px;
 	margin-top: 5px;
 }
+
+.leaderboard-text {
+	text-align: center;
+}
+
+.centered-text {
+	text-align: center;
+}

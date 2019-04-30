@@ -132,6 +132,10 @@ io.on('connection', (socket) => {
 	socket.on('request_scores', (data) => {
 		sendScores(socket, data.key);
 	});
+
+	socket.on('request_top_marker', (data) => { getTopMarkerAccounts(socket); });
+	socket.on('request_top_player', (data) => { getTopPlayerAccounts(socket); });
+	socket.on('request_top_overall', (data) => { getTopOverallAccounts(socket); });
 });
 
 function sendScores(socket, key) {
@@ -266,6 +270,11 @@ function incrementPlayerScore(username) {
 	});
 }
 
+function SafeObject(username, data) {
+	this.username = username;
+	this.data = data;
+}
+
 function getTopMarkerAccounts(socket) {
 	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
 		if (err) throw err;
@@ -273,7 +282,11 @@ function getTopMarkerAccounts(socket) {
 		var sortingOrder = { marker_collected: -1 };
 		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
 			if (err) throw err;
-			socket.emit(result);
+			var safeList = [];
+			result.forEach(object => {
+				safeList.push(new SafeObject(object.username, object.marker_collected));
+			});
+			socket.emit('sent_top_marker', { account_list: safeList });
 			db.close();
 		});
 	});
@@ -286,7 +299,11 @@ function getTopPlayerAccounts(socket) {
 		var sortingOrder = { player_collected: -1 };
 		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
 			if (err) throw err;
-			socket.emit(result);
+			var safeList = [];
+			result.forEach(object => {
+				safeList.push(new SafeObject(object.username, object.player_collected));
+			});
+			socket.emit('sent_top_player', { account_list: safeList });
 			db.close();
 		});
 	});
@@ -299,7 +316,11 @@ function getTopOverallAccounts(socket) {
 		var sortingOrder = { marker_collected: -1, player_collected: -1 };
 		dbo.collection("accounts").find().sort(sortingOrder).limit(10).toArray((err, result) => {
 			if (err) throw err;
-			socket.emit(result);
+			var safeList = [];
+			result.forEach(object => {
+				safeList.push(new SafeObject(object.username, object.marker_collected + object.player_collected));
+			});
+			socket.emit('sent_top_overall', { account_list: safeList });
 			db.close();
 		});
 	});
