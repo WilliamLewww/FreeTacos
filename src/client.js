@@ -118,12 +118,16 @@ function createClientListeners() {
 		accountDiv.appendChild(logoutButton);
 
 		var scoreDiv = document.getElementById('score-div');
+		var overallScoreText = document.createElement('p');
+		overallScoreText.id = "overall-score";
+		overallScoreText.innerHTML = 'Overall Score: ';
 		var markerScoreText = document.createElement('p');
 		markerScoreText.id = "marker-score";
 		markerScoreText.innerHTML = 'Markers Absorbed: ';
 		var playerScoreText = document.createElement('p');
 		playerScoreText.id = "player-score";
 		playerScoreText.innerHTML = 'Players Absorbed: ';
+		scoreDiv.appendChild(overallScoreText);
 		scoreDiv.appendChild(markerScoreText);
 		scoreDiv.appendChild(playerScoreText);
 
@@ -218,8 +222,9 @@ function createClientListeners() {
 	});
 
 	socket.on('sent_scores', (data) => {
-		document.getElementById('marker-score').innerHTML = 'Marker Absorbed: ' + data.marker_collected;
-		document.getElementById('player-score').innerHTML = 'Player Absorbed: ' + data.player_collected;
+		document.getElementById('overall-score').innerHTML = 'Overall Score: ' + (data.marker_collected + data.player_collected);
+		document.getElementById('marker-score').innerHTML = 'Markers Absorbed: ' + data.marker_collected;
+		document.getElementById('player-score').innerHTML = 'Players Absorbed: ' + data.player_collected;
 	});
 
 	socket.on('sent_top_marker', (data) => {
