@@ -47,7 +47,7 @@ function sizeChange(size) {
 }
 
 function requestScores() {
-	socket.emit('request_scores', { key: sessionKey });
+	socket.emit('request_scores');
 }
 
 function setupLeaderboard() {
@@ -202,6 +202,7 @@ function createClientListeners() {
 
 	socket.on('marker_collected', (data) => {
 		if (sessionKey.length > 0) {
+			joiner.player.gameState = 0;
 			joiner.player.setColor([0,255,0,255]);
 		}
 

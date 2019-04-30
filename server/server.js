@@ -95,7 +95,7 @@ io.on('connection', (socket) => {
 				if (clientList[x].position[0] + 40 >= currentMarker.position[0] && clientList[x].position[0] <= currentMarker.position[0] + 40 &&
 					clientList[x].position[1] + 40 >= currentMarker.position[1] && clientList[x].position[1] <= currentMarker.position[1] + 40) {
 					
-					incrementMarkerScore(clientList[x].username);
+					incrementMarkerScore(socket, clientList[x].username);
 
 					for (var y = 0; y < clientList.length; y++) {
 						if (clientList[y].gameState == 1) { clientList[y].gameState = 0; }
@@ -105,9 +105,6 @@ io.on('connection', (socket) => {
 
 					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
 					socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
-
-					socket.emit('update_leaderboard');
-					socket.broadcast.emit('update_leaderboard');
 				}
 			}
 		}
@@ -115,19 +112,17 @@ io.on('connection', (socket) => {
 
 	socket.on('collision_player', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
-			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
+			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key && clientList[x].gameState == 1) {
 				for (var y = 0; y < clientList.length; y++) {
 					if (clientList[y].id == data.o_client_id) {
 						if (clientList[x].position[0] + 40 >= clientList[y].position[0] && clientList[x].position[0] <= clientList[y].position[0] + 40 &&
 							clientList[x].position[1] + 40 >= clientList[y].position[1] && clientList[x].position[1] <= clientList[y].position[1] + 40) {
 
-							incrementPlayerScore(clientList[x].username);
+							incrementPlayerScore(socket, clientList[x].username);
+
 							clientList[y].position = SPAWN_POSITION;
 							socket.emit('confirm_collision', { type: "player" });
 							socket.broadcast.emit('player_collected', { key: clientList[y].sessionKey });
-
-							socket.emit('update_leaderboard');
-							socket.broadcast.emit('update_leaderboard');
 						}
 					}
 				}
@@ -136,17 +131,21 @@ io.on('connection', (socket) => {
 	});
 
 	socket.on('request_scores', (data) => {
-		sendScores(socket, data.key);
+		sendScores(socket);
 	});
 
 	socket.on('request_top_marker', (data) => { getTopMarkerAccounts(socket); });
 	socket.on('request_top_player', (data) => { getTopPlayerAccounts(socket); });
 	socket.on('request_top_overall', (data) => { getTopOverallAccounts(socket); });
+
+	setInterval(function(){
+	    socket.emit('update_leaderboard'); 
+	}, 30000);
 });
 
-function sendScores(socket, key) {
+function sendScores(socket) {
 	for (var x = 0; x < clientList.length; x++) {
-		if (clientList[x].id == socket.id && clientList[x].sessionKey == key) {
+		if (clientList[x].id == socket.id) {
 			var username = clientList[x].username;
 			MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
 				if (err) throw err;
@@ -240,7 +239,7 @@ function register(socket, username, password) {
 	});
 }
 
-function incrementMarkerScore(username) {
+function incrementMarkerScore(socket, username) {
 	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
 		if (err) throw err;
 		var dbo = db.db("network_game");
@@ -250,6 +249,7 @@ function incrementMarkerScore(username) {
 			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
 				if (err) throw err;
 				if (resultSecond) {
+					sendScores(socket);
 					console.log("User: " + username + " Updated Marker Score to: " + (result.marker_collected + 1));
 				}
 			});
@@ -258,7 +258,7 @@ function incrementMarkerScore(username) {
 	});
 }
 
-function incrementPlayerScore(username) {
+function incrementPlayerScore(socket, username) {
 	MongoClient.connect(URL, { useNewUrlParser: true }, (err, db) => {
 		if (err) throw err;
 		var dbo = db.db("network_game");
@@ -268,6 +268,7 @@ function incrementPlayerScore(username) {
 			dbo.collection("accounts").updateOne({username: username}, newValue, (err, resultSecond) => {
 				if (err) throw err;
 				if (resultSecond) {
+					sendScores(socket);
 					console.log("User: " + username + " Updated Player Score to: " + (result.player_collected + 1));
 				}
 			});
