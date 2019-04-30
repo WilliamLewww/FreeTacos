@@ -1,5 +1,5 @@
 const SPAWN_POSITION = [50,525];
-const POSITION_INTERVAL = 50;
+const POSITION_INTERVAL = 25;
 
 var TILE_MAP;
 var currentMarkerPosition;

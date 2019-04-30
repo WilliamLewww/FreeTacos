@@ -1,4 +1,4 @@
-const GRAVITY = 0.2;
+const GRAVITY = 9.8;
 
 function Player(position, width, height, color = [255,0,0,255]) {
 	this.rectangle = new Rectangle(position[0], position[1], width, height, color);
@@ -15,8 +15,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.previousY = 0;
 	this.positionTimer = 0.0;
 
-	this.moveSpeed = 2.5;
-	this.jumpHeight = 5;
+	this.moveSpeed = 125;
+	this.jumpHeight = 225;
 
 	this.top = () => { return this.rectangle.y; }
 	this.bottom = () => { return this.rectangle.y + this.rectangle.height; }
@@ -67,8 +67,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			}
 		}
 
-		this.rectangle.x += this.velocityX;
-		this.rectangle.y += this.velocityY;
+		this.rectangle.x += this.velocityX * (elapsedTimeMS / 1000.0);
+		this.rectangle.y += this.velocityY * (elapsedTimeMS / 1000.0);
 
 		if (this.positionTimer >= POSITION_INTERVAL) {
 			if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
@@ -79,9 +79,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 				sendPosition();
 			}
 		}
-		else {
-			this.positionTimer += elapsedTimeMS;
-		}
+		else { this.positionTimer += elapsedTimeMS; }
 
 		this.onGround = false;
 	}
@@ -90,8 +88,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (this.isSmall == false) {
 			this.rectangle.height = PLAYER_HEIGHT / 2;
 			this.rectangle.y += PLAYER_HEIGHT / 2;
-			this.moveSpeed = 1.8;
-			this.jumpHeight = 3.0;
+			this.moveSpeed = 75;
+			this.jumpHeight = 150;
 			this.isSmall = true;
 			sizeChange("small");
 		}
@@ -111,8 +109,8 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		if (canChangeToBig && this.isSmall == true) {
 			this.rectangle.height = PLAYER_HEIGHT;
 			this.rectangle.y -= PLAYER_HEIGHT / 2;
-			this.moveSpeed = 2.5;
-			this.jumpHeight = 5;
+			this.moveSpeed = 125;
+			this.jumpHeight = 225;
 			this.isSmall = false;
 			sizeChange("medium");
 		}

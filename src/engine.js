@@ -58,12 +58,13 @@ function initialize() {
 }
 
 function mainLoop() {
+  mainReq = requestAnimationFrame(mainLoop);
+
   frameStart = Date.now();
+  deltaTime = frameStart - frameEnd;
+  frameEnd = frameStart;
   update(deltaTime);
   draw();
-  frameEnd = Date.now();
-  deltaTime = frameEnd - frameStart;
-  mainReq = requestAnimationFrame(mainLoop);
 }
 
 function update(elapsedTimeMS) {
@@ -83,13 +84,13 @@ function resize() {
   scaleMin = Math.min(scaleX, scaleY);
 
   if (scaleMin <= 1.0) {
-  gl.canvas.width = (SCREEN_WIDTH * scaleMin);
-  gl.canvas.height = (SCREEN_HEIGHT * scaleMin);
+    gl.canvas.width = (SCREEN_WIDTH * scaleMin);
+    gl.canvas.height = (SCREEN_HEIGHT * scaleMin);
   }
   else {
   scaleMin = 1.0;
-  gl.canvas.width = SCREEN_WIDTH;
-  gl.canvas.height = SCREEN_HEIGHT;
+    gl.canvas.width = SCREEN_WIDTH;
+    gl.canvas.height = SCREEN_HEIGHT;
   }
 }
 
