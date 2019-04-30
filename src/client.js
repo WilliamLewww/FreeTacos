@@ -218,8 +218,8 @@ function createClientListeners() {
 	});
 
 	socket.on('sent_scores', (data) => {
-		document.getElementById('marker-score').innerHTML = 'Marker Score: ' + data.marker_collected;
-		document.getElementById('player-score').innerHTML = 'Player Score: ' + data.player_collected;
+		document.getElementById('marker-score').innerHTML = 'Marker Absorbed: ' + data.marker_collected;
+		document.getElementById('player-score').innerHTML = 'Player Absorbed: ' + data.player_collected;
 	});
 
 	socket.on('sent_top_marker', (data) => {
