@@ -1,5 +1,7 @@
 const GRAVITY = 9.8;
 
+const POSITION_INTERVAL = 0.1;
+
 const MOVE_SPEED = [125, 100];
 const JUMP_SPEED = [275, 175];
 
@@ -84,7 +86,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 				sendPosition();
 			}
 		}
-		else { this.positionTimer += elapsedTimeMS; }
+		else { this.positionTimer += elapsedTimeMS / 1000.0; }
 
 		this.onGround = false;
 	}

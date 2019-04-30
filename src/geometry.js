@@ -5,7 +5,7 @@ function denormalizeColor(color) {
 //10x5
 function getTextureCoordinates(index) {
 	var coordinates = [];
-	var offset = 0.0005;
+	var offset = 0.005;
 
 	if (index == 0) {
 		coordinates.push(0.0 + offset);
