@@ -1,7 +1,7 @@
 const GRAVITY = 9.8;
 
-const MOVE_SPEED = [125, 80];
-const JUMP_SPEED = [250, 150];
+const MOVE_SPEED = [125, 100];
+const JUMP_SPEED = [275, 150];
 
 function Player(position, width, height, color = [255,0,0,255]) {
 	this.rectangle = new Rectangle(position[0], position[1], width, height, color);
@@ -172,7 +172,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 							this.velocityY = 0;
 						}
 						if (platform.id == 2) {
-							this.velocityY = -this.jumpSpeed * 1.9;
+							this.velocityY = -this.jumpSpeed * 1.8;
 						}
 					}
 				}
