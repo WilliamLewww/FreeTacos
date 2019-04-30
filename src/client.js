@@ -120,10 +120,10 @@ function createClientListeners() {
 		var scoreDiv = document.getElementById('score-div');
 		var markerScoreText = document.createElement('p');
 		markerScoreText.id = "marker-score";
-		markerScoreText.innerHTML = 'Marker Score: ';
+		markerScoreText.innerHTML = 'Markers Absorbed: ';
 		var playerScoreText = document.createElement('p');
 		playerScoreText.id = "player-score";
-		playerScoreText.innerHTML = 'Player Score: ';
+		playerScoreText.innerHTML = 'Players Absorbed: ';
 		scoreDiv.appendChild(markerScoreText);
 		scoreDiv.appendChild(playerScoreText);
 
