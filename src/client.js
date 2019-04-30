@@ -197,7 +197,9 @@ function createClientListeners() {
 	});
 
 	socket.on('marker_collected', (data) => {
-		joiner.player.setColor([0,255,0,255]);
+		if (sessionKey.length > 0) {
+			joiner.player.setColor([0,255,0,255]);
+		}
 
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id.toString() == data.client_id) {
@@ -259,6 +261,8 @@ function createClientListeners() {
 			counter += 1;
 		});
 	});
+
+	socket.on('update_leaderboard', (data) => { setupLeaderboard(); });
 }
 
 function sendPosition() {

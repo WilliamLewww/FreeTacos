@@ -105,6 +105,9 @@ io.on('connection', (socket) => {
 
 					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
 					socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
+
+					socket.emit('update_leaderboard');
+					socket.broadcast.emit('update_leaderboard');
 				}
 			}
 		}
@@ -122,6 +125,9 @@ io.on('connection', (socket) => {
 							clientList[y].position = SPAWN_POSITION;
 							socket.emit('confirm_collision', { type: "player" });
 							socket.broadcast.emit('player_collected', { key: clientList[y].sessionKey });
+
+							socket.emit('update_leaderboard');
+							socket.broadcast.emit('update_leaderboard');
 						}
 					}
 				}
