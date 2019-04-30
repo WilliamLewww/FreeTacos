@@ -14,8 +14,6 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	this.previousX = 0;
 	this.previousY = 0;
 	this.positionTimer = 0.0;
-	//this.positionInterval = 0;
-	this.positionInterval = 25;
 
 	this.moveSpeed = 2.5;
 	this.jumpHeight = 5;
@@ -72,7 +70,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 		this.rectangle.x += this.velocityX;
 		this.rectangle.y += this.velocityY;
 
-		if (this.positionTimer >= this.positionInterval) {
+		if (this.positionTimer >= POSITION_INTERVAL) {
 			if (this.previousX != this.rectangle.x || this.previousY != this.rectangle.y) {
 				this.previousX = this.rectangle.x;
 				this.previousY = this.rectangle.y;
@@ -145,7 +143,7 @@ function Player(position, width, height, color = [255,0,0,255]) {
 	}
 
 	this.checkCollisionBottom = (platform) => {
-		if (this.top() <= platform.bottom() && this.top() >= platform.bottom() - 5 && 
+		if (this.top() <= platform.bottom() && this.top() >= platform.centerY() && 
 			this.left() <= platform.right() - 3 && this.right() >= platform.left() + 3) {
 			return true;
 		}
