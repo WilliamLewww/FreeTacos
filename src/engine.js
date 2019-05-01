@@ -53,17 +53,22 @@ function initialize() {
   mainLoop();
 }
 
-var frameEnd = 0, deltaTime = 0;
-function mainLoop(frameStart) {
-  mainReq = requestAnimationFrame(mainLoop);
-
-  deltaTime = frameStart - frameEnd;
+var frameEnd = 0, deltaTime = 0, frameStep = 1000.0 / 60.0;
+function mainLoop(frameStart = 0) {
+  if (frameStart < frameEnd + frameStep) {
+    mainReq = requestAnimationFrame(mainLoop);
+    return;
+  }
+  deltaTime += frameStart - frameEnd;
   frameEnd = frameStart;
 
-  if (deltaTime < 75.0) {
-    update(deltaTime);
-    draw();
+  while (deltaTime >= frameStep) {
+    update(frameStep);
+    deltaTime -= frameStep;
   }
+
+  draw();
+  mainReq = requestAnimationFrame(mainLoop);
 }
 
 function update(elapsedTimeMS) {
