@@ -1,5 +1,7 @@
 const SPAWN_POSITION = [50,525];
 
+const CHASE_TIMER = 15000;
+
 const MARKER_POSITION_COUNT = 11;
 const TILE_MAP = [
 	[7,4,4,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,4,0,0,0,0,0,7],
@@ -15,8 +17,8 @@ const TILE_MAP = [
 	[1,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,0,1,0,0,0,0,0,1,1,0,0,0,0,0,0,0,0,0,0,0,1],
 	[1,0,0,0,1,1,0,1,1,1,0,0,1,0,0,0,0,0,0,0,0,0,0,0,1],
-	[1,0,0,1,1,1,0,0,0,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,1],
-	[1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
+	[1,0,0,1,1,1,0,0,8,0,0,1,1,2,2,2,2,2,2,2,2,2,2,2,1],
+	[1,1,1,1,1,1,1,1,9,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1]
 ];
 
 const URL = "mongodb://username:HrLgtjuOPMVqCENl@freetacos-shard-00-00-wovzf.mongodb.net:27017,freetacos-shard-00-01-wovzf.mongodb.net:27017,freetacos-shard-00-02-wovzf.mongodb.net:27017/test?ssl=true&replicaSet=FreeTacos-shard-0&authSource=admin&retryWrites=true";
@@ -89,6 +91,14 @@ io.on('connection', (socket) => {
 		}
 	});
 
+	socket.on('collision_gate_drop', (data) => {
+		for (var x = 0; x < clientList.length; x++) {
+			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
+				socket.emit('confirm_collision', { type: "gate_drop" });
+			}
+		}
+	});
+
 	socket.on('collision_marker', (data) => {
 		for (var x = 0; x < clientList.length; x++) {
 			if (clientList[x].id == socket.id && clientList[x].sessionKey == data.key) {
@@ -101,10 +111,16 @@ io.on('connection', (socket) => {
 						if (clientList[y].gameState == 1) { clientList[y].gameState = 0; }
 					}
 					clientList[x].gameState = 1;
-					resetMarkerPosition();
+					currentMarker.setPosition([-100,-100]);
 
 					socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
 					socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
+
+					setTimeout(function() {
+						resetMarkerPosition();
+						socket.emit('confirm_collision', { type: "marker", current_marker: currentMarker });
+						socket.broadcast.emit('marker_collected', { client_id: socket.id, current_marker: currentMarker });
+					}, CHASE_TIMER);
 				}
 			}
 		}

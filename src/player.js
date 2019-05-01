@@ -49,20 +49,12 @@ function Player(position, width, height, color = [255,0,0,255]) {
 			this.rectangle.y = 0;
 		}
 
-		if (this.bottom() < SCREEN_HEIGHT) {
-			if (this.velocityY < 0 && inputList.indexOf(32) == -1) {
-				this.velocityY += GRAVITY;
-			}
-
+		if (this.velocityY < 0 && inputList.indexOf(32) == -1) {
 			this.velocityY += GRAVITY;
 		}
-		else {
-			this.velocityY = 0;
-			this.rectangle.y = SCREEN_HEIGHT - (this.rectangle.height);
-			this.onGround = true;
+		this.velocityY += GRAVITY;
 
-			if (inputList.indexOf(32) == -1) { this.canJump = true; }
-		}
+		if (this.rectangle.y > SCREEN_HEIGHT) { this.rectangle.y = -this.rectangle.height; }
 
 		if (this.onGround && this.canJump) {
 			if (inputList.indexOf(32) != -1) {
@@ -176,6 +168,14 @@ function Player(position, width, height, color = [255,0,0,255]) {
 						if (platform.id == 2) {
 							this.velocityY = -this.jumpSpeed * 1.8;
 						}
+						if (platform.id == 4) {
+							if (!platform.isEnabled) {
+								if (inputList.indexOf(32) == -1) { this.canJump = true; }
+								this.onGround = true;
+								this.rectangle.y += overlapY;
+								this.velocityY = 0;
+							}
+						}
 					}
 				}
 				else {
@@ -188,8 +188,10 @@ function Player(position, width, height, color = [255,0,0,255]) {
 				}
 			}
 			else {
-				this.rectangle.x += overlapX;
-				this.velocityX = 0;
+				if (platform.id == 1 || platform.id == 3) {
+					this.rectangle.x += overlapX;
+					this.velocityX = 0;
+				}
 			}
 		}
 	}

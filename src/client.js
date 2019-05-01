@@ -34,6 +34,10 @@ function collisionGate() {
 	socket.emit('collision_gate', { key: sessionKey });
 }
 
+function collisionGateDrop() {
+	socket.emit('collision_gate_drop', { key: sessionKey });
+}
+
 function collisionMarker() {
 	socket.emit('collision_marker', { key: sessionKey });
 }
@@ -179,6 +183,14 @@ function createClientListeners() {
 			for (var x = 0; x < joiner.platformList.length; x++) {
 				if (joiner.platformList[x].id == 3) {
 					joiner.platformList[x].incrementState();
+				}
+			}
+		}
+
+		if (data.type == "gate_drop") {
+			for (var x = 0; x < joiner.platformList.length; x++) {
+				if (joiner.platformList[x].id == 4) {
+					joiner.platformList[x].enable();
 				}
 			}
 		}

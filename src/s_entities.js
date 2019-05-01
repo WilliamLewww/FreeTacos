@@ -41,6 +41,38 @@ function Gateway(position, width, height) {
 	}
 }
 
+function GatewayDrop(position, width, height) {
+	this.id = 4;
+	this.isEnabled = false;
+	this.rectangle = new RectangleTextured(position[0], position[1], width, height, 4);
+
+	this.top = () => { return this.rectangle.y; }
+	this.bottom = () => { return this.rectangle.y + this.rectangle.height; }
+	this.left = () => { return this.rectangle.x; }
+	this.right = () => { return this.rectangle.x + this.rectangle.width; }
+
+	this.centerX = () => { return this.rectangle.x + (this.rectangle.width / 2); }
+	this.centerY = () => { return this.rectangle.y + (this.rectangle.height / 2); }
+
+	this.enable = () => {
+		if (!this.isEnabled) {
+			this.rectangle.updateIndex(5);
+			this.isEnabled = true;
+		}
+	}
+
+	this.disable = () => {
+		if (this.isEnabled) {
+			this.rectangle.updateIndex(4);
+			this.isEnabled = false;
+		}
+	}
+
+	this.draw = () => {
+		this.rectangle.draw();
+	}
+}
+
 function Marker(position) {
 	this.rectangle = new RectangleTextured(position[0], position[1], 40, 40, 3);
 

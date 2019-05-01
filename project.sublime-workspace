@@ -4,6 +4,10 @@
 		"selected_items":
 		[
 			[
+				"margi",
+				"margin-left\tproperty"
+			],
+			[
 				"vel",
 				"velocityY"
 			],
@@ -510,20 +514,34 @@
 			[
 				"VERT",
 				"VERTEX_SHADER_SOURCE\t(shader_source.js)"
-			],
-			[
-				"space",
-				"spaceOffset"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
+			"file": "src/client.js",
+			"settings":
+			{
+				"buffer_size": 9812,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
 			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 4232,
+				"buffer_size": 4259,
+				"encoding": "UTF-8",
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "style.css",
+			"settings":
+			{
+				"buffer_size": 1116,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -1618,24 +1636,53 @@
 	"groups":
 	[
 		{
-			"selected": 0,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
+					"file": "src/client.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 4232,
+						"buffer_size": 9812,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								2444,
-								2444
+								9319,
+								9319
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 2875.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4259,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								2598,
+								2598
 							]
 						],
 						"settings":
@@ -1644,10 +1691,38 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 417.0,
+						"translation.y": 208.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "style.css",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1116,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1014,
+								1014
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/CSS/CSS.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 564.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
@@ -1710,16 +1785,20 @@
 		"selected_items":
 		[
 			[
+				"css",
+				"style.css"
+			],
+			[
+				"cli",
+				"src\\client.js"
+			],
+			[
 				"geo",
 				"src\\geometry.js"
 			],
 			[
 				"engi",
 				"src\\engine.js"
-			],
-			[
-				"css",
-				"style.css"
 			],
 			[
 				"inde",
@@ -1744,10 +1823,6 @@
 			[
 				"joi",
 				"src\\joiner.js"
-			],
-			[
-				"cli",
-				"src\\client.js"
 			],
 			[
 				"ser",

@@ -31,6 +31,12 @@ function Joiner() {
 				if (TILE_MAP[y][x] == 6) {
 					this.platformList.push(new Platform(1, [x * 40,y * 40], 40, 40, [200,200,200,255]));
 				}
+				if (TILE_MAP[y][x] == 8) {
+					this.platformList.push(new Platform(1, [x * 40, y * 40], 40, 20, generateRandomRGB()));
+				}
+				if (TILE_MAP[y][x] == 9) {
+					this.platformList.push(new GatewayDrop([x * 40, y * 40], 40, 40));
+				}
 			}
 		}
 	}
@@ -64,6 +70,8 @@ function Joiner() {
 					}
 				}
 				else { this.player.handleCollision(this.platformList[x]); }
+
+				if (this.platformList[x].id == 4) { collisionGateDrop(); }
 			}
 		}
 	}

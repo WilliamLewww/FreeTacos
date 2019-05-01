@@ -31,6 +31,18 @@ function getTextureCoordinates(index) {
 		coordinates.push(0.0 + offset);
 		coordinates.push(0.2 - offset);
 	}
+	if (index == 4) {
+		coordinates.push(0.7 + offset);
+		coordinates.push(0.8 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
+	}
+	if (index == 5) {
+		coordinates.push(0.8 + offset);
+		coordinates.push(0.9 - offset);
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.2 - offset);
+	}
 
 	return coordinates;
 }
