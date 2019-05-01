@@ -60,7 +60,7 @@ function mainLoop(frameStart) {
   deltaTime = frameStart - frameEnd;
   frameEnd = frameStart;
 
-  if (deltaTime < 100.0) {
+  if (deltaTime < 75.0) {
     update(deltaTime);
     draw();
   }

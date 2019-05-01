@@ -7,6 +7,11 @@ function generateRandomRGB() {
 
 function Joiner() {
 	this.initialize = () => {
+		this.background1 = new RectangleTextured(520, 400, 440, 200, 6);
+		this.background2 = new RectangleTextured(40, 400, 480, 200, 7);
+		this.background3 = new RectangleTextured(0, 0, 1000, 400, 8);
+		this.background4 = new RectangleTextured(1000, 0, 1000, 400, 8);
+
 		this.marker = new Marker(currentMarkerPosition);
 		this.player = new Player([50, SCREEN_HEIGHT - 75], PLAYER_WIDTH, PLAYER_HEIGHT);
 		this.platformList = [];
@@ -42,6 +47,11 @@ function Joiner() {
 	}
 
 	this.update = (elapsedTimeMS) => {
+		this.background3.x -= 75 * (elapsedTimeMS / 1000);
+		this.background4.x -= 75 * (elapsedTimeMS / 1000);
+		if (this.background3.x + this.background3.width <= 0) { this.background3.x = 1000; this.background4.x = 0; }
+		if (this.background4.x + this.background4.width <= 0) { this.background4.x = 1000; this.background3.x = 0; }
+
 		this.player.update(elapsedTimeMS);
 
 		if (this.player.gameState == 1) {
@@ -77,6 +87,10 @@ function Joiner() {
 	}
 
 	this.draw = () => {
+		this.background1.draw();
+		this.background2.draw();
+		this.background3.draw();
+		this.background4.draw();
 		this.marker.draw();
 		clientList.forEach(client => { client.rectangle.draw(client.position[0], client.position[1]); });
 		this.player.draw();

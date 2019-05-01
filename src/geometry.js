@@ -43,6 +43,24 @@ function getTextureCoordinates(index) {
 		coordinates.push(0.0 + offset);
 		coordinates.push(0.2 - offset);
 	}
+	if (index == 6) {
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.4 - offset);
+		coordinates.push(0.2 + offset);
+		coordinates.push(0.6 - offset);
+	}
+	if (index == 7) {
+		coordinates.push(0.4 + offset);
+		coordinates.push(0.9 - offset);
+		coordinates.push(0.2 + offset);
+		coordinates.push(0.6 - offset);
+	}
+	if (index == 8) {
+		coordinates.push(0.0 + offset);
+		coordinates.push(0.5 - offset);
+		coordinates.push(0.6 + offset);
+		coordinates.push(1.0 - offset);
+	}
 
 	return coordinates;
 }
