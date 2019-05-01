@@ -49,3 +49,28 @@ canvas {
 .centered-text {
 	text-align: center;
 }
+
+.scoreboard-text {
+	padding-left: 25px;
+}
+
+.scoreboard-text-gold {
+	padding-left: 25px;
+	background-color: #ffd700;
+}
+
+.scoreboard-text-silver {
+	padding-left: 25px;
+	background-color: #c0c0c0;
+}
+
+.scoreboard-text-bronze {
+	padding-left: 25px;
+	background-color: #cd7f32;
+}
+
+.background-color-secondary {
+	border-style: solid;
+	border-width: 5px;
+	background-color: #e5efff;
+}

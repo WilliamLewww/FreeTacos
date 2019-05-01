@@ -233,8 +233,11 @@ function createClientListeners() {
 		var leaderboardDiv = document.getElementById('leaderboard-marker');
 		data.account_list.forEach(account => {
 			var leaderboardText = document.createElement('p');
-			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
-			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.innerHTML = '#' + counter + ': ' + '<b>' + account.username + '</b>' + ' with ' + '<b>' + account.data + '</b>';
+			if (counter == 1) { leaderboardText.setAttribute('class', 'scoreboard-text-gold'); }
+			if (counter == 2) { leaderboardText.setAttribute('class', 'scoreboard-text-silver'); }
+			if (counter == 3) { leaderboardText.setAttribute('class', 'scoreboard-text-bronze'); }
+			if (counter != 1 && counter != 2 && counter != 3) { leaderboardText.setAttribute('class', 'scoreboard-text'); }
 			leaderboardText.setAttribute('id', 'leaderboard-data');
 			leaderboardDiv.appendChild(leaderboardText);
 
@@ -246,8 +249,11 @@ function createClientListeners() {
 		var leaderboardDiv = document.getElementById('leaderboard-player');
 		data.account_list.forEach(account => {
 			var leaderboardText = document.createElement('p');
-			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
-			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.innerHTML = '#' + counter + ': ' + '<b>' + account.username + '</b>' + ' with ' + '<b>' + account.data + '</b>';
+			if (counter == 1) { leaderboardText.setAttribute('class', 'scoreboard-text-gold'); }
+			if (counter == 2) { leaderboardText.setAttribute('class', 'scoreboard-text-silver'); }
+			if (counter == 3) { leaderboardText.setAttribute('class', 'scoreboard-text-bronze'); }
+			if (counter != 1 && counter != 2 && counter != 3) { leaderboardText.setAttribute('class', 'scoreboard-text'); }
 			leaderboardText.setAttribute('id', 'leaderboard-data');
 			leaderboardDiv.appendChild(leaderboardText);
 
@@ -259,8 +265,11 @@ function createClientListeners() {
 		var leaderboardDiv = document.getElementById('leaderboard-overall');
 		data.account_list.forEach(account => {
 			var leaderboardText = document.createElement('p');
-			leaderboardText.innerHTML = '#' + counter + ': ' + account.username + ' with ' + account.data;
-			leaderboardText.setAttribute('class', 'centered-text');
+			leaderboardText.innerHTML = '#' + counter + ': ' + '<b>' + account.username + '</b>' + ' with ' + '<b>' + account.data + '</b>';
+			if (counter == 1) { leaderboardText.setAttribute('class', 'scoreboard-text-gold'); }
+			if (counter == 2) { leaderboardText.setAttribute('class', 'scoreboard-text-silver'); }
+			if (counter == 3) { leaderboardText.setAttribute('class', 'scoreboard-text-bronze'); }
+			if (counter != 1 && counter != 2 && counter != 3) { leaderboardText.setAttribute('class', 'scoreboard-text'); }
 			leaderboardText.setAttribute('id', 'leaderboard-data');
 			leaderboardDiv.appendChild(leaderboardText);
 
