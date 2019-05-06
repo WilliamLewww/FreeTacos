@@ -30,6 +30,13 @@ canvas {
 	border-width: 8px;
 	margin-top: -5px;
 	background-color: #c9dcff ;
+	width: 75vw;
+	margin: auto;
+}
+
+.second-box {
+	margin-top: 5px;
+	margin-bottom: -8px;
 }
 
 .top-instruction {

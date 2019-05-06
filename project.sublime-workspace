@@ -4,6 +4,14 @@
 		"selected_items":
 		[
 			[
+				"frameSt",
+				"frameStart"
+			],
+			[
+				"frame",
+				"frameEnd"
+			],
+			[
 				"back",
 				"background4"
 			],
@@ -506,33 +514,25 @@
 			[
 				"positi",
 				"positionBuffer"
-			],
-			[
-				"VERTE",
-				"VERTEX_SHADER_SOURCE\t(shader_source.js)"
-			],
-			[
-				"compi",
-				"compileShader"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "index.html",
+			"file": "server/server.js",
 			"settings":
 			{
-				"buffer_size": 4259,
+				"buffer_size": 13053,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "server/server.js",
+			"file": "index.html",
 			"settings":
 			{
-				"buffer_size": 13053,
+				"buffer_size": 4438,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -559,7 +559,7 @@
 			"file": "src/engine.js",
 			"settings":
 			{
-				"buffer_size": 3454,
+				"buffer_size": 3630,
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
@@ -599,9 +599,17 @@
 				"encoding": "UTF-8",
 				"line_ending": "Windows"
 			}
+		},
+		{
+			"file": "src/shader_source.js",
+			"settings":
+			{
+				"buffer_size": 2001,
+				"line_ending": "Windows"
+			}
 		}
 	],
-	"build_system": "",
+	"build_system": "Packages/C++/C++ Single File.sublime-build",
 	"build_system_choices":
 	[
 		[
@@ -722,6 +730,22 @@
 			[
 				"Nautilus",
 				"Compile Client"
+			]
+		],
+		[
+			[
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					""
+				],
+				[
+					"Packages/C++/C++ Single File.sublime-build",
+					"Run"
+				]
+			],
+			[
+				"Packages/C++/C++ Single File.sublime-build",
+				"Run"
 			]
 		],
 		[
@@ -1033,6 +1057,10 @@
 		"selected_items":
 		[
 			[
+				"a",
+				"Arithmetic"
+			],
+			[
 				"colo",
 				"UI: Select Color Scheme"
 			],
@@ -1046,10 +1074,6 @@
 			],
 			[
 				"ar",
-				"Arithmetic"
-			],
-			[
-				"a",
 				"Arithmetic"
 			],
 			[
@@ -1398,6 +1422,9 @@
 	],
 	"file_history":
 	[
+		"/C/Projects/TestBed/lab1.cpp",
+		"/C/Projects/FreeTacos/index.html",
+		"/C/Projects/TestBed/2_29.cpp",
 		"/C/Projects/FreeTacos/style.css",
 		"/C/Projects/FreeTacos/src/client.js",
 		"/C/Projects/FreeTacos/server/server.js",
@@ -1406,7 +1433,6 @@
 		"/C/Projects/FreeTacos/src/engine.js",
 		"/C/Projects/FreeTacos/src/player.js",
 		"/C/Projects/FreeTacos/src/s_entities.js",
-		"/C/Projects/FreeTacos/index.html",
 		"/C/Projects/FreeTacos/src/shader_source.js",
 		"/C/Projects/FreeTacos/server/package.json",
 		"/C/Users/William/Desktop/test.py",
@@ -1465,8 +1491,6 @@
 		"/C/Projects/Mood/bsp_tree.data",
 		"/C/Libraries/glfw-3.2.1/docs/CMakeLists.txt",
 		"/C/Projects/Mood/src/third_person_bsp.cpp",
-		"/C/Projects/TestBed/2_29.cpp",
-		"/C/Projects/TestBed/lab1.cpp",
 		"/C/Projects/Mood/editor/src/joiner.h",
 		"/C/Projects/Mood/editor/src/vector2.cpp",
 		"/C/Projects/Mood/src/core/drawing.cpp",
@@ -1545,6 +1569,20 @@
 		"case_sensitive": false,
 		"find_history":
 		[
+			"createElement",
+			"joiner.player",
+			"this.player",
+			"this.platformList",
+			"this.marker",
+			"this",
+			"marker",
+			"this",
+			"register",
+			"attemptRegister",
+			"attempt_register",
+			"register",
+			"initializeTextures",
+			"mainReq",
 			"100",
 			"1",
 			"getRandomMarkerLocation",
@@ -1658,21 +1696,7 @@
 			"0",
 			"height",
 			"changeToSmall",
-			"clientList",
-			"username",
-			"sessionKey",
-			"Client",
-			"existing",
-			"sessionKey",
-			"coordinates[2]",
-			"coordinates[3]",
-			"coordinates[1]",
-			"5",
-			"3",
-			"2",
-			"5",
-			"1",
-			"0"
+			"clientList"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1690,40 +1714,11 @@
 	"groups":
 	[
 		{
-			"selected": 4,
+			"selected": 1,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "index.html",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 4259,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								1210,
-								1210
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/HTML/HTML.sublime-syntax",
-							"translate_tabs_to_spaces": false
-						},
-						"translation.x": 0.0,
-						"translation.y": 182.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 6,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
 					"file": "server/server.js",
 					"semi_transient": false,
 					"settings":
@@ -1735,8 +1730,8 @@
 						"selection":
 						[
 							[
-								2788,
-								2788
+								61,
+								61
 							]
 						],
 						"settings":
@@ -1745,10 +1740,38 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 759.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 2,
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 4438,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								186,
+								186
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
@@ -1764,8 +1787,8 @@
 						"selection":
 						[
 							[
-								7160,
-								7160
+								3206,
+								3215
 							]
 						],
 						"settings":
@@ -1774,10 +1797,10 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 2877.0,
+						"translation.y": 1278.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
@@ -1793,8 +1816,8 @@
 						"selection":
 						[
 							[
-								2305,
-								2305
+								969,
+								969
 							]
 						],
 						"settings":
@@ -1802,11 +1825,11 @@
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
-						"translation.x": 22.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 4,
 					"type": "text"
 				},
 				{
@@ -1815,15 +1838,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 3454,
+						"buffer_size": 3630,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1697,
-								1697
+								2866,
+								2866
 							]
 						],
 						"settings":
@@ -1833,10 +1856,10 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 593.0,
+						"translation.y": 1346.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 0,
+					"stack_index": 2,
 					"type": "text"
 				},
 				{
@@ -1852,8 +1875,8 @@
 						"selection":
 						[
 							[
-								1064,
-								1064
+								939,
+								939
 							]
 						],
 						"settings":
@@ -1865,7 +1888,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 6,
 					"type": "text"
 				},
 				{
@@ -1887,14 +1910,15 @@
 						],
 						"settings":
 						{
+							"history_list_is_closing": true,
 							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 322.0,
+						"translation.y": 290.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 7,
+					"stack_index": 10,
 					"type": "text"
 				},
 				{
@@ -1910,8 +1934,8 @@
 						"selection":
 						[
 							[
-								1014,
-								1014
+								738,
+								738
 							]
 						],
 						"settings":
@@ -1920,18 +1944,12 @@
 							"translate_tabs_to_spaces": false
 						},
 						"translation.x": 0.0,
-						"translation.y": 564.0,
+						"translation.y": 546.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 8,
+					"stack_index": 3,
 					"type": "text"
-				}
-			]
-		},
-		{
-			"selected": 0,
-			"sheets":
-			[
+				},
 				{
 					"buffer": 8,
 					"file": "src/geometry.js",
@@ -1945,8 +1963,66 @@
 						"selection":
 						[
 							[
-								652,
-								652
+								1815,
+								1815
+							]
+						],
+						"settings":
+						{
+							"history_list_is_closing": true,
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax",
+							"translate_tabs_to_spaces": false
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 9,
+					"file": "src/shader_source.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 2001,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								560,
+								560
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.sublime-syntax"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "src/client.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 10092,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								933,
+								933
 							]
 						],
 						"settings":
@@ -1958,7 +2034,7 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 9,
 					"type": "text"
 				}
 			]
@@ -1981,18 +2057,11 @@
 				0,
 				1,
 				1
-			],
-			[
-				1,
-				0,
-				2,
-				1
 			]
 		],
 		"cols":
 		[
 			0.0,
-			0.5,
 			1.0
 		],
 		"rows":
@@ -2028,8 +2097,48 @@
 		"selected_items":
 		[
 			[
+				"engi",
+				"src\\engine.js"
+			],
+			[
+				"css",
+				"style.css"
+			],
+			[
 				"eng",
 				"src\\engine.js"
+			],
+			[
+				"ind",
+				"index.html"
+			],
+			[
+				"server",
+				"server\\server.js"
+			],
+			[
+				"sty",
+				"style.css"
+			],
+			[
+				"in",
+				"index.html"
+			],
+			[
+				"cli",
+				"src\\client.js"
+			],
+			[
+				"clie",
+				"src\\client.js"
+			],
+			[
+				"jo",
+				"src\\joiner.js"
+			],
+			[
+				"sha",
+				"src\\shader_source.js"
 			],
 			[
 				"player",
@@ -2044,31 +2153,7 @@
 				"src\\s_entities.js"
 			],
 			[
-				"jo",
-				"src\\joiner.js"
-			],
-			[
-				"server",
-				"server\\server.js"
-			],
-			[
-				"css",
-				"style.css"
-			],
-			[
-				"cli",
-				"src\\client.js"
-			],
-			[
-				"engi",
-				"src\\engine.js"
-			],
-			[
 				"inde",
-				"index.html"
-			],
-			[
-				"ind",
 				"index.html"
 			],
 			[
@@ -2108,10 +2193,6 @@
 				"src\\engine.js"
 			],
 			[
-				"sha",
-				"src\\shader_source.js"
-			],
-			[
 				"en",
 				"src\\engine.js"
 			],
@@ -2142,10 +2223,6 @@
 			[
 				"sh",
 				"src\\shader_source.js"
-			],
-			[
-				"in",
-				"index.html"
 			],
 			[
 				"index",

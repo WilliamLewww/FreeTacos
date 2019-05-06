@@ -23,7 +23,7 @@ function initializeTextures() {
 
 function initialize() {
   if (loadingTextExists) {
-	document.getElementById("loading-text").remove();
+    document.getElementById("loading-text").remove();
     document.getElementById("loading-text2").remove();
     loadingTextExists = false;
   }
